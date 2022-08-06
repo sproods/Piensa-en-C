@@ -30,7 +30,7 @@ void Lectura1(int A[][12])
 
 	while (MES != -1 && PRO != -1 && CAN != -1)
 	{
-		A[MES - 1][PRO - 1] += CAN;
+		A[PRO - 1][MES - 1] += CAN;
 		printf("\nIngrese mes, tipo de producto y cantidad vendida: ");
 		scanf("%d %d %d", &MES, &PRO, &CAN);
 	}
