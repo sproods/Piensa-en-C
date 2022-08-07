@@ -16,7 +16,7 @@ void main(void)
 
 	do
 	{
-		printf("Digite le número de filas de la matriz: ");
+		printf("Digite el número de filas de la matriz: ");
 		scanf("%d", &FIL);
 	}
 	while(FIL > MAX || FIL < 1);
