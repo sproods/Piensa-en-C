@@ -30,7 +30,7 @@ void Lectura(int A[][10], int N)
 /* La función Lectura se utiliza para leer un arreglo bidimensional cuadrado de tipo entero. */
 {
 	int I, J;
-	for (I = 0; J < N; I++)
+	for (I = 0; I < N; I++)
 		for (J = 0; J < N; J++)
 		{
 			printf("Digite el elemento %d %d: ", I + 1, J + 1);
@@ -49,13 +49,13 @@ void Calcula(int A[][10], float B[], int N)
 				break;
 			case 2: B[I] = Mod2(A, I, N);
 				break;
-			case 3: B[I] = Mod0(A, I, N);
+			default: B[I] = Mod0(A, I, N);
 				break;
 		}
 }
 
 float Mod0(int A[][10], int K, int M)
-/* Esta función calcula el cociente entre una productori y una sumatoria. */
+/* Esta función calcula el cociente entre una productoria y una sumatoria. */
 {
 	int I;
 	float PRO = 1.0, SUM = 0.0;
