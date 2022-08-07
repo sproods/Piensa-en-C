@@ -72,7 +72,7 @@ float Mod1(int A[][10], int N)
 {
 	int I;
 	float SUM = 0.0;
-	for (I = 0; I < N; I++)
+	for (I = 0; I <= N; I++)
 		SUM += A[N][I];
 	return(SUM);
 }
