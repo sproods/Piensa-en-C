@@ -7,6 +7,7 @@ const int MAX = 50;
 
 void Cuadrado(int [][MAX], int);		/* Prototipos de funciones. */
 void Imprime(int [][MAX], int);
+void Imprime2(int [][MAX], int);
 
 void main(void)
 {
@@ -16,11 +17,11 @@ void main(void)
 		printf("Digite el tamaño impar de la matriz: ");
 		scanf("%d", &TAM);
 	}
-	while((TAM > MAX || TAM < 1) && (TAM % 2 == 0));
+	while((TAM > MAX && TAM % 2 == 0) || (TAM < 1 && TAM % 2 == 0));
 	/* Se verifica el tamaño del arreglo y el orden (impar) del mismo. */
 
 	Cuadrado(CMA, TAM);
-	Imprime(CMA, TAM);
+	Imprime2(CMA, TAM);
 }
 
 void Cuadrado(int A[][MAX], int N)
@@ -48,4 +49,17 @@ void Imprime(int A[][MAX], int N)
 	for (I = 0; I < N; I++)
 		for (J = 0; J < N; J++)
 			printf("\nElemento %d %d: %d", I + 1, J + 1, A[I][J]);
+}
+
+void Imprime2(int A[][MAX], int N)
+{
+	int I, J;
+	printf("\n");
+	for (I = 0; I < N; I++)
+	{
+		printf("|");
+		for (J = 0; J < N; J++)
+			printf(" %d |", A[I][J]);
+		printf("\n");
+	}
 }
