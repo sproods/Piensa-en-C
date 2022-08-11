@@ -48,13 +48,13 @@ void Intercambia(float A[][MAX], int F, int C)
 {
 	int I, J;
 	float AUX;
-	for(I = 0; I < F; I++)
+	for(J = 0; J < C; J++)
 	{
-		for(J = 0; J < (C / 2); J++)
+		for(I = 0; I < (F / 2); I++)
 		{
 			AUX = A[I][J];
-			A[I][J] = A[I][C - 1 - J];
-			A[I][C - 1 - J] = AUX;
+			A[I][J] = A[F - 1 - I][J];
+			A[F - 1 - I][J] = AUX;
 		}
 	}
 }
