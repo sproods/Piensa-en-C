@@ -45,7 +45,7 @@ void main(void)
 
 	char p;
 	int i = 0;
-	/* La declaración de variable siempre se debe realizar en la parte inicial del programa. En este caso se colocan es esta sección (char p e int i = 0) para que puedas observar la relación directa con las líneas de programación que se muestran a continuación. */
+	/* La declaración de variable siempre se debe realizar en la parte inicial del programa. En este caso se colocan en esta sección (char p e int i = 0) para que puedas observar la relación directa con las líneas de programación que se muestran a continuación. */
 	printf("\nDigite una línea de texto -se lee cada caracter con getchar-: \n");
 	/* Se utiliza la función getchar para leer caracteres de la línea de texto y asignarlos a la variable de tipo cadena de caracteres cad6. Observa que se leen caracteres mientras no se ecncuentra al caracter que indica fin de línea '\n'. */
 
