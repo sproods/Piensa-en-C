@@ -44,3 +44,8 @@ void main(void)
 
 	cad0 = strstr(cad0, "Perú");
 	printf("\nPrueba de la función strstr. Se trata de localizar la cadena Peŕu dentro de cad0: %s\n", cad0);
+	/* La función strstr se utiliza para localizar una cadena de caracteres dentro de otro cadena. Si la encuentra, regresa un apuntador al inicio de la primera ocurrencia de la cadena localizada. De otra forma, regresa NULL. */
+
+	cad0 = strstr(cad0, "Guatemala");
+	printf("\nPrueba de la función strstr. Se trata de localizar la cadena Guatemala dentro de cad0: %s\n", cad0);
+}
