@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-const int MAX = 50;
+const int MAX = 100;
 
 void Lectura(int[][MAX], int);        /* Prototipos de funciones. */
 void Imprime(int[][MAX], int);
@@ -52,5 +52,7 @@ void Imprime(int A[][MAX], int T)
 
 int Prueba(int A[][MAX], int T)
 {
-    int I, J;
+    int I, J, SUM;
+    
+    
 }
