@@ -30,7 +30,7 @@ void main(void)
 	printf("\nPrueba de la función strncpy. Se copian 3 caracteres de cad3 a cad2: %s\n", cad2);
 
 	strcat(cad0, " ");
-	//strcat(cad0, cad3);
+	strcat(cad0, cad3);
 	/* La función strcat permite incorporar una cadena de caracteres a otra cadena dada. En este caso se agrega la cadena cad3 a cad0. Si el espacio reservado para cad0 es menor a lo que se debe almacenar se genera un error de ejecución. */
 
 	printf("\nPrueba de la función strcat. Se incorpora la cadena cad3 a cad0: %s\n", cad0);
