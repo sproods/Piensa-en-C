@@ -80,11 +80,9 @@ void Multiplica(float A[][MAX], float B[][MAX], float C[][MAX], int FIL, int COL
         for(J = 0; J < COL2; J++)
         {
             C[I][J] = 0;
-            L = J;
             for(K = 0; K < COL; K++)
             {
-                C[I][J] = A[I][K] * B[K][L];
-                L++;
+                C[I][J] += A[I][K] * B[K][J];
             }
         }
 }
