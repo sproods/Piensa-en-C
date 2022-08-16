@@ -39,10 +39,13 @@ void main(void)
     Lectura(VEC1, M, N);
     printf("\nPara el segundo arreglo bidimensional de %dx%d:", N, P);
     Lectura(VEC2, N, P);
+    printf("\nPRMER ARREGLO:");
     Imprime(VEC1, M, N);
+    printf("\nSEGUNDO ARREGLO:");
     Imprime(VEC2, N, P);
 
     Multiplica(VEC1, VEC2, MUL, M, N, P);
+    printf("\nLA MULTIPLICACIÓN DE LOS ARREGLOS:");
     Imprime(MUL, M, P);
 }
 
@@ -60,7 +63,28 @@ void Lectura(float A[][MAX], int F, int C)
 void Imprime(float A[][MAX], int F, int C)
 {
     int I, J;
+    printf("\n");
     for(I = 0; I < F; I++)
+    {
+        printf("|");
         for(J = 0; J < C; J++)
-            printf("\n");
+            printf(" %.2f |", A[I][J]);
+        printf("\n");
+    }
+}
+
+void Multiplica(float A[][MAX], float B[][MAX], float C[][MAX], int FIL, int COL, int COL2)
+{
+    int I, J, K, L;
+    for(I = 0; I < FIL; I++)
+        for(J = 0; J < COL2; J++)
+        {
+            C[I][J] = 0;
+            L = J;
+            for(K = 0; K < COL; K++)
+            {
+                C[I][J] = A[I][K] * B[K][L];
+                L++;
+            }
+        }
 }
