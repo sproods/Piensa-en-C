@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 /* Recorrido en espiral de un arreglo de números enteros. */
 
@@ -61,43 +62,37 @@ void Imprime(int A[][MAX], int F, int C)
 
 void Path(int A[][MAX], int F, int C)
 {
-    int i, I, j, J;
+    int i, I, j, J, cam, sen;
 
     i = 0;
     j = 0;
+    cam = 0;
+    sen = 1;
 
+    printf("MAT[%d][%d] = %3d\n", i, j, A[i][j]);
     while(F > 0 || C > 0)
     {
-        for(J = 0; J < C - 1; J++)
+        if (sen == 1)
         {
-            printf("MAT[%d][%d] = %3d\n", i, j, A[i][j]);
-            j++;
+            for (J = 1; J < C; J++)
+            {
+                j += pow(-1, cam);
+                printf("MAT[%d][%d] = %3d\n", i, j, A[i][j]);
+            }
+            C--;
+            sen--;
         }
 
-        C--;
-
-        for(I = 0; I < F - 1; I++)
+        else
         {
-            printf("MAT[%d][%d] = %3d\n", i, j, A[i][j]);
-            i++;
+            for (I = 1; I < F; I++)
+            {
+                i += pow(-1, cam);
+                printf("MAT[%d][%d] = %3d\n", i, j, A[i][j]);
+            }
+            F--;
+            sen++;
+            cam++;
         }
-
-        F--;
-
-        for(J = 0; J < C - 1; J++)
-        {
-            printf("MAT[%d][%d] = %3d\n", i, j, A[i][j]);
-            j--;
-        }
-
-        C--;
-
-        for(I = 0; I < F - 1; I++)
-        {
-            printf("MAT[%d][%d] = %3d\n", i, j, A[i][j]);
-            i--;
-        }
-
-        F--;
     }
 }
