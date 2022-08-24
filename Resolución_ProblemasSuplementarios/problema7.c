@@ -5,7 +5,7 @@
 
 #define MAX 50
 
-void Lectura(int [][MAX], int , int);           /* Prototipos de funciones. */
+// void Lectura(int [][MAX], int , int);           /* Prototipos de funciones. */
 void Imprime(int [][MAX], int , int);
 void Path(int [][MAX], int , int);
 
@@ -27,24 +27,24 @@ void main(void)
     }
     while(N < 1 || N > 50);
 
-    Lectura(MAT, M, N);
-    printf("\nEL ARREGLO:");
-    Imprime(MAT, M, N);
+    // Lectura(MAT, M, N);
+    // printf("\nEL ARREGLO:");
+    // Imprime(MAT, M, N);
     printf("\nEL RECORRIDO EN ESPIRAL DEL AREGLO:\n");
     Path(MAT, M, N);
 }
 
-void Lectura(int A[][MAX], int F, int C)
-{
-    int I, J;
+// void Lectura(int A[][MAX], int F, int C)
+// {
+//     int I, J;
 
-    for(I = 0; I < F; I++)
-        for(J = 0; J < C; J++)
-        {
-            printf("Digite el componente %d %d: ", I + 1, J + 1);
-            scanf("%d", &A[I][J]);
-        }
-}
+//     for(I = 0; I < F; I++)
+//         for(J = 0; J < C; J++)
+//         {
+//             printf("Digite el componente %d %d: ", I + 1, J + 1);
+//             scanf("%d", &A[I][J]);
+//         }
+// }
 
 void Imprime(int A[][MAX], int F, int C)
 {
@@ -62,22 +62,25 @@ void Imprime(int A[][MAX], int F, int C)
 
 void Path(int A[][MAX], int F, int C)
 {
-    int i, I, j, J, cam, sen;
+    int i, j, cam, sen, inicio, limitefil, limitecol, maximo, N;
 
+    maximo = F * C;
+    N = 1;
     i = 0;
-    j = 0;
+    limitefil = F;
+    limitecol = C;
+    inicio = 0;
     cam = 0;
     sen = 1;
-
-    printf("MAT[%d][%d] = %3d\n", i, j, A[i][j]);
-    while(F > 0 || C > 0)
+    
+    while(N <= maximo)
     {
         if (sen == 1)
         {
-            for (J = 1; J < C; J++)
+            for (j = inicio; j < limitecol; j++)
             {
                 j += pow(-1, cam);
-                printf("MAT[%d][%d] = %3d\n", i, j, A[i][j]);
+                A[i][j] = N++;
             }
             C--;
             sen--;
@@ -85,7 +88,7 @@ void Path(int A[][MAX], int F, int C)
 
         else
         {
-            for (I = 1; I < F; I++)
+            for (i = 1; i < limitefil; i++)
             {
                 i += pow(-1, cam);
                 printf("MAT[%d][%d] = %3d\n", i, j, A[i][j]);
