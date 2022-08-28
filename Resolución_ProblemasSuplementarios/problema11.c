@@ -16,6 +16,12 @@ void main(void)
 
     printf("Digite el número de visitantes para el año, mes y centro correspondiente:\n");
     Lectura(SEC);
+
+    printf("\nTotal de visitantes en los cinco años para cada uno de los centros turísticos:\n\n");
+    Total_Visitantes(SEC);
+
+    printf("\nEn el quinto año, los meses con menor y mayor número de visitantes fueron:\n\n");
+    Min_Max(SEC);
 }
 
 void Lectura(int A[CEN][MES][YEAR])
@@ -31,7 +37,66 @@ void Lectura(int A[CEN][MES][YEAR])
             }
 }
 
-void Total_Visitantes(int A[][][])          /* Función que realiza el cálculo del total de visitantes para cada centro de turismo. */
+void Total_Visitantes(int A[CEN][MES][YEAR])          /* Función que realiza el cálculo del total de visitantes para cada centro de turismo. */
 {
-    int i, j, k;
+    int i, j, k, total, min, may, cenMin, cenMay;
+
+    min = 10000 * YEAR * MES;
+    may = 0;
+
+    for (i = 0; i < YEAR; i++)
+    {
+        total = 0;
+        printf("CENTRO %d: ", i + 1);
+        for (k = 0; k < YEAR; k++)
+            for (j = 0; j < MES; j++)
+                total += A[i][j][k];
+        
+        printf("%d en los cinco años.\n", total);
+
+        if(may < total)
+        {
+            may = total;
+            cenMay = i;
+        }
+
+        if(min > total)
+        {
+            min = total;
+            cenMin = i;
+        }
+    }
+
+    printf("El centro con mayor número de visitantes es el %d con %d visitantes en los últimos cinco años\n", cenMay, may);
+    printf("El centro con menor número de visitantes es el %d con %d visitantes en los últimos cinco años\n", cenMin, min);
+}
+
+void Min_Max(int A[CEN][MES][YEAR])
+{
+    int i, j, men, may, mesMen, mesMay, sum;
+
+    sum = 0;
+    may = 0;
+    men = 100000 * MES;
+
+    for (j = 0; j < MES; j++)
+    {
+        for (i = 0; i < CEN; i++)
+            sum += A[i][j][YEAR];
+        
+        if (sum > may)
+        {
+            may = sum;
+            mesMay = j;
+        }
+
+        if (sum < men)
+        {
+            men = sum;
+            mesMen = j;
+        }
+    }
+
+    printf("El mes con menor número de visitantes en el quinto año fue el %d con %d visitante\n", mesMen, men);
+    printf("El mes con mayor número de visitantes en el quinto año fue el %d con %d visitante\n", mesMay, may);
 }
