@@ -82,7 +82,7 @@ void Min_Max(int A[CEN][MES][YEAR])
     for (j = 0; j < MES; j++)
     {
         for (i = 0; i < CEN; i++)
-            sum += A[i][j][YEAR];
+            sum += A[i][j][YEAR - 1];
         
         if (sum > may)
         {
