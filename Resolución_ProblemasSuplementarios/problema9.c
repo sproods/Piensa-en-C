@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <math.h>
 
-#define MAX 12
 /* Resolución del problema número ocho-- El problema de las ocho reinas. */
 
+#define MAX 12
+int cont = 0;
+
 void Nreinas(int [], int, int);         /* Prototipos de funciones. */
-int Comprueba(int [], int, int);
+int Comprueba(int [], int);
 
 void main(void)
 {
@@ -22,27 +24,27 @@ void main(void)
 
 void Nreinas(int reinas[], int n, int k)        /* Declaramos la función Nreinas en forma recursiva. */
 {
-    int i, cont = 0;
+    int i;
 
     if (k == n)
     {
         cont++;
-        printf("Solución %d: ", cont);
+        printf("Solución %d: [ ", cont);
 
         for (i = 0; i < n; i++)
             printf("%d, ", reinas[i]);
-        printf("\n");
+        printf("\b\b ]\n");
     }
 
     else
     {
         for (reinas[k] = 0; reinas[k] < n; reinas[k]++)
-            if(Comprueba(reinas, n, k))
+            if(Comprueba(reinas, k))
                 Nreinas(reinas, n, k + 1);
     }
 }
 
-int Comprueba(int reinas[], int n, int k)               /* Declaración de la función Comprueba, la cual se encargará de verificar que las condiciones se cumplan dentro del tablero. */
+int Comprueba(int reinas[], int k)               /* Declaración de la función Comprueba, la cual se encargará de verificar que las condiciones se cumplan dentro del tablero. */
 {
     int i;
 
