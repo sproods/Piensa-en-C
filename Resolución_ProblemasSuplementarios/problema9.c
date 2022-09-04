@@ -29,7 +29,7 @@ void Nreinas(int reinas[], int n, int k)        /* Declaramos la función Nreina
     if (k == n)
     {
         cont++;
-        printf("Solución %d: [ ", cont);
+        printf("Solución %3d: [ ", cont);
 
         for (i = 0; i < n; i++)
             printf("%d, ", reinas[i]);
@@ -48,7 +48,7 @@ int Comprueba(int reinas[], int k)               /* Declaración de la función 
 {
     int i;
 
-    for (i = 0; i < k ; i++)
+    for (i = 0; i < k; i++)
     {
         if(reinas[i] == reinas[k] || (fabs(k - i) == fabs(reinas[k] - reinas[i])))
         {
