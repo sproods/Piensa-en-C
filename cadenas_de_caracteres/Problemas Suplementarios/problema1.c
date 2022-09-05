@@ -4,8 +4,12 @@
 
 void main(void)
 {
-    int i, j;
+    int i, j, n;
     char a, b;
+
+    printf("Digite el tamaño de la figura: ");
+    scanf("%d", &n);
+    fflush(stdin);
 
     printf("Digite un caracter de su elección: ");
     a = getchar();
@@ -15,11 +19,15 @@ void main(void)
     scanf("%c", &b);
     fflush(stdin);
 
-    for(i = 0; i < 7; i++)
+    for(i = 0; i <= n; i++)
     {
-        putchar(a);
-        for(j = 0; j < 3; j++)
-            printf("%c", b);
+        for(j = i; j < n; j++)
+        {
+            printf("%c", a);
+        }
+        
+        for(j = 0; j < i; j++)
+            putchar(b);
         printf("\n");
     }
 }
