@@ -4,7 +4,7 @@
 
 void main(void)
 {
-    int i;
+    int i, j;
     char a, b;
 
     printf("Digite un caracter de su elección: ");
@@ -18,5 +18,8 @@ void main(void)
     for(i = 0; i < 7; i++)
     {
         putchar(a);
+        for(j = 0; j < 3; j++)
+            printf("%c", b);
+        printf("\n");
     }
 }
