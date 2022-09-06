@@ -27,9 +27,13 @@ void main(void)
     c = a - '0';
 
     if(islower(M))
-    {
         for(i = 0; i < c; i++)
             printf("%c", toupper(M));
-    }
 
+    if(isupper(M))
+        for(i = 0; i < c; i++)
+        {
+            M = tolower(M);
+            putchar(M);
+        }
 }
