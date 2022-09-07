@@ -11,9 +11,10 @@ void main(void)
 
     while((letter = getchar()) != '\n')
     {
-        printf("[");
-        putchar(toupper(letter));
-        printf("]");
+        if(letter != ' ')
+            putchar(toupper(letter));
+        else
+            printf("\n");
     }
 
     printf("\n");
