@@ -5,15 +5,15 @@
 
 void main(void)
 {
-    int A, sum;
+    double A, sum;
     char texto[50];
 
     printf("Digite un texto: ");
     gets(texto);
 
-    A = atoi(texto);
-    printf("El valor entero del texto es: %d.", A);
+    A = atof(texto);
+    printf("El valor double del texto es: %.3f.", A);
 
-    sum = 8 + A;
-    printf("\nLa suma es: %d", sum);
+    sum = 8.245 + A;
+    printf("\nLa suma es: %.3f", sum);
 }
