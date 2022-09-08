@@ -5,18 +5,21 @@
 
 void main(void)
 {
-    double A;
-    char cadena_1[50], *cadena;
+    long A, B;
+    char cadena1[50], *cadena;
 
-    printf("Escriba el texto de su preferencia: ");
-    gets(cadena_1);
+    printf("Digite una cadena de texto: ");
+    gets(cadena1);
 
-    A = strtod(cadena_1, &cadena);
+    A = atol(cadena1);
 
-    printf("\nEl valor del caracter es %s\nmientras que el valor real del texto es %.3lf\n", cadena_1, A + 12);
-    puts(cadena);
+    printf("El valor de la cadena de caracteres ingresada es %s\nEl valor entero de la cadena es %ld\n\n", cadena1, A);
 
-    printf("Digite otra cadena de caracteres: ");
-    gets(cadena);
+    printf("Digite otra cadena de texto: ");
+    gets(cadena1);
+
+    B = strtol(cadena1, &cadena, 0);
+
+    printf("El valor de la cadena digitada es %s\nEl valor entero de la cadena es %ld\n\n", cadena1, B);
     puts(cadena);
 }
