@@ -5,15 +5,18 @@
 
 void main(void)
 {
-    double A, sum;
-    char texto[50];
+    double A;
+    char cadena_1[50], *cadena;
 
-    printf("Digite un texto: ");
-    gets(texto);
+    printf("Escriba el texto de su preferencia: ");
+    gets(cadena_1);
 
-    A = atof(texto);
-    printf("El valor double del texto es: %.3f.", A);
+    A = strtod(cadena_1, &cadena);
 
-    sum = 8.245 + A;
-    printf("\nLa suma es: %.3f", sum);
+    printf("\nEl valor del caracter es %s\nmientras que el valor real del texto es %.3lf\n", cadena_1, A + 12);
+    puts(cadena);
+
+    printf("Digite otra cadena de caracteres: ");
+    gets(cadena);
+    puts(cadena);
 }
