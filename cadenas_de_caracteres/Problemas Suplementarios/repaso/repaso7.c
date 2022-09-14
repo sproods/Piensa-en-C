@@ -14,6 +14,7 @@ void main(void)
     printf("Digite la segunda cadena de caracteres (que será el subconjunto): \n");
     gets(sub);
     fflush(stdin);
+    printf("\n");
 
     cad = strstr(string, sub);
     puts(cad);
@@ -22,6 +23,7 @@ void main(void)
     {
         i++;
         cad = strstr(cad + 1, sub);
+        puts(cad);
     }
 
     printf("\nEl número de veces que la cadena \"%s\" se repite en la cadena \"%s\" es %d\n",sub, string, i);
