@@ -25,7 +25,7 @@ void main(void)
 
 void Convert(char *string, char *day, char *month, char *year)
 {
-    if (month = "01")
+    if (strcmp(month, "01") == 0)
         if (year > 22 && year <= 99)
             printf("%s de Enero de 19%s", day, year);
         else if (year >= 0 && year <=22)
@@ -33,7 +33,7 @@ void Convert(char *string, char *day, char *month, char *year)
         else
             printf("El año es incorrecto.");
 
-    if (month = "02")
+    if (strcmp(month, "02") == 0)
         if (year > 22 && year <= 99)
             printf("%s de Febrero de 19%s", day, year);
         else if (year >= 0 && year <=22)
@@ -41,7 +41,7 @@ void Convert(char *string, char *day, char *month, char *year)
         else
             printf("El año es incorrecto.");
 
-    if (month = "03")
+    if (strcmp(month, "03") == 0)
         if (year > 22 && year <= 99)
             printf("%s de Marzo de 19%s", day, year);
         else if (year >= 0 && year <=22)
@@ -49,7 +49,7 @@ void Convert(char *string, char *day, char *month, char *year)
         else
             printf("El año es incorrecto.");
 
-    if (month = "04")
+    if (strcmp(month, "04") == 0)
         if (year > 22 && year <= 99)
             printf("%s de Abril de 19%s", day, year);
         else if (year >= 0 && year <=22)
@@ -57,7 +57,7 @@ void Convert(char *string, char *day, char *month, char *year)
         else
             printf("El año es incorrecto.");
 
-    if (month = "05")
+    if (strcmp(month, "05") == 0)
         if (year > 22 && year <= 99)
             printf("%s de Mayo de 19%s", day, year);
         else if (year >= 0 && year <=22)
@@ -65,7 +65,7 @@ void Convert(char *string, char *day, char *month, char *year)
         else
             printf("El año es incorrecto.");
 
-    if (month = "06")
+    if (strcmp(month, "06") == 0)
         if (year > 22 && year <= 99)
             printf("%s de Junio de 19%s", day, year);
         else if (year >= 0 && year <=22)
@@ -73,7 +73,7 @@ void Convert(char *string, char *day, char *month, char *year)
         else
             printf("El año es incorrecto.");
 
-    if (month = "07")
+    if (strcmp(month, "07") == 0)
         if (year > 22 && year <= 99)
             printf("%s de Julio de 19%s", day, year);
         else if (year >= 0 && year <=22)
@@ -81,7 +81,7 @@ void Convert(char *string, char *day, char *month, char *year)
         else
             printf("El año es incorrecto.");
 
-    if (month = "08")
+    if (strcmp(month, "08") == 0)
         if (year > 22 && year <= 99)
             printf("%s de Agosto de 19%s", day, year);
         else if (year >= 0 && year <=22)
@@ -89,7 +89,7 @@ void Convert(char *string, char *day, char *month, char *year)
         else
             printf("El año es incorrecto.");
 
-    if (month = "09")
+    if (strcmp(month, "09") == 0)
         if (year > 22 && year <= 99)
             printf("%s de Setiembre de 19%s", day, year);
         else if (year >= 0 && year <=22)
@@ -97,7 +97,7 @@ void Convert(char *string, char *day, char *month, char *year)
         else
             printf("El año es incorrecto.");
 
-    if (month = "10")
+    if (strcmp(month, "10") == 0)
         if (year > 22 && year <= 99)
             printf("%s de Octubre de 19%s", day, year);
         else if (year >= 0 && year <=22)
@@ -105,7 +105,7 @@ void Convert(char *string, char *day, char *month, char *year)
         else
             printf("El año es incorrecto.");
 
-    if (month = "11")
+    if (strcmp(month, "11") == 0)
         if (year > 22 && year <= 99)
             printf("%s de Noviembre de 19%s", day, year);
         else if (year >= 0 && year <=22)
@@ -113,7 +113,7 @@ void Convert(char *string, char *day, char *month, char *year)
         else
             printf("El año es incorrecto.");
 
-    if (month = "12")
+    if (strcmp(month, "12") == 0)
         if (year > 22 && year <= 99)
             printf("%s de Diciembre de 19%s", day, year);
         else if (year >= 0 && year <=22)
