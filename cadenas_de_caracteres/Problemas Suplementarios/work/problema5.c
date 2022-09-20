@@ -13,6 +13,11 @@ void main(void)
 
     while (texto[i] != '\0')
     {
+        if (isalpha(texto[0]))
+        {
+            texto[0] = toupper(texto[0]);
+        }
+
         if (texto[i] == ' ')
         {
             texto[i + 1] = toupper(texto[i + 1]);
@@ -21,5 +26,6 @@ void main(void)
         i++;
     }
 
+    printf("\n");
     puts(texto);
 }
