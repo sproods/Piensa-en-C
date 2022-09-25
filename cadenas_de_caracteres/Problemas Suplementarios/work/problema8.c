@@ -25,7 +25,11 @@ void main(void)
             putchar(texto1[i]);
             i++;
         }
-        fflush(stdin);
+
+        if (texto1[i] != '\0')
+        {
+            i++;
+        }
 
         printf(" ");
 
@@ -34,12 +38,13 @@ void main(void)
             putchar(texto2[j]);
             j++;
         }
-        fflush(stdin);
+
+        if (texto2[j] != '\0')
+        {
+            j++;
+        }
 
         printf(" ");
-
-        i++;
-        j++;
     }
 
     printf("\n");
