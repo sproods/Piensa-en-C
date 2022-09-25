@@ -19,11 +19,15 @@ void main(void)
         while ((string[i] != ' ') && (string[i] != '\0'))
         {
             array[j][k] = string[i];
-            i++;
-            k++;
+
+            if (string[i] != '\0')
+            {
+                i++;
+                k++;
+            }
         }
 
-        array[j][i] = '\0';
+        array[j][k] = '\0';
 
         j++;
     }
