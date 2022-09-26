@@ -16,6 +16,15 @@ struct alumno           // Declaración de la estructura.
     char direccion[20];
 };
 
+// typedef struct          // Declaración de la estructura definida por typedef.
+// {
+//     int matricula;
+//     char nombre[20];
+//     char carrera[20];
+//     float promedio;
+//     char direccion[20];
+// } alumno;               // Alumno es el nuevo tipo de datos creado por el usuario.
+
 void Lectura(struct alumno *);      // Prototipo de función.
 
 void main(void)
