@@ -26,7 +26,7 @@ void Lectura(alumno *a);     // Prototipo de función.
 
 void main(void)
 {
-    alumno a0, a1 = {120, "María", "Contabilidad", 8,9, "158-40-50"}, a2, a3;
+    alumno a1 = {120, "María", "Contabilidad", 8,9, "158-40-50"}, a2, a3, a0;
     /* Observa que sólo el primer componente de una unión puede recibir valores por
     medio de este tipo de asignaciones. */
 
