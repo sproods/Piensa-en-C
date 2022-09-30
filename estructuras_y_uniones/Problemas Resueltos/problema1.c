@@ -35,7 +35,7 @@ void main(void)
 
     Lectura(INV, TAM);
 
-    printf("\nDigite la operación a realizar: \n\t\t1 - Ventas \n\t\t2 - Reabastecimiento \n\t\t 3 - Nuevos Productos \n\t\t 4 - Inventario \n\t\t 0 - Salir: ");
+    printf("\nDigite la operación a realizar: \n\t\t1 - Ventas \n\t\t2 - Reabastecimiento \n\t\t3 - Nuevos Productos \n\t\t4 - Inventario \n\t\t0 - Salir: ");
     scanf("%d", &OPE);
 
     while (OPE)
@@ -100,7 +100,7 @@ void Ventas(producto A[], int T)
 
         I = 0;
         while ((I < T) && (A[I].clave < CLA))
-        // Se realia una búsqueda para localizar la clave del producto.
+        // Se realiza una búsqueda para localizar la clave del producto.
             I++;
 
         if ((I == T) || (A[I].clave > CLA))
