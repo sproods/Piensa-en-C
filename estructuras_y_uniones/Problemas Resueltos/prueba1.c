@@ -53,7 +53,8 @@ void Lectura(project A[], int T)
 
 void Orden(project A[], int T)
 {
-    int I, J, min, aux, X;
+    int I, J, min, X;
+    project aux;
 
     for (I = 0; I < T - 1; I++)
     {
@@ -69,9 +70,13 @@ void Orden(project A[], int T)
             }
         }
 
-        aux = A[I].codigo;
-        A[I].codigo = A[X].codigo;
-        A[X].codigo = aux;
+        // aux = A[I].codigo;               // Este parte del algoritmo solo reemplaza los campos del código mas no todo el componente del arreglo.
+        // A[I].codigo = A[X].codigo;
+        // A[X].codigo = aux;
+
+        aux = A[I];
+        A[I] = A[X];
+        A[X] = aux;
     }
 }
 
