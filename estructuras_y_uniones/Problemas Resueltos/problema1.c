@@ -200,7 +200,7 @@ void Nuevos_Productos(producto A[], int *T)
             else
             {
                 for (J = *T; J > I; J--)
-                // Se incerta el nuevo producto en el arreglo. Se mueven un posición a la derecha los elementos del arreglo que tengan una clave de producto mayor a la ingresada.
+                // Se inserta el nuevo producto en el arreglo. Se mueven un posición a la derecha los elementos del arreglo que tengan una clave de producto mayor a la ingresada.
                     A[J] = A[J - 1];
                 
                 A[I].clave = CLA;
