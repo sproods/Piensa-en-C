@@ -81,7 +81,7 @@ void Lectura(CLIENTE A[], int T)        // Función que lee los datos de los cli
         gets(A[i].nom);
         fflush(stdin);
 
-        printf("Domicilio:");
+        printf("Domicilio:\n");
         printf("\tCalle: ");
         gets(A[i].dom.cnum);
         fflush(stdin);
