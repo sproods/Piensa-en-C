@@ -159,6 +159,8 @@ void Deposito(CLIENTE A[], int T)         // Función que efectúa la operación
             scanf("%f", &dep);
 
             A[i].sal += dep;
+
+            printf("\nEl nuevo saldo de la cuenta %ld es %.2f", A[i].cue, A[i].sal);
         }
 
         printf("Digite otro número de cuenta -0 para salir- : ");
@@ -177,6 +179,7 @@ void Retiro(CLIENTE A[], int T)         // Función qe efectúa la operación de
 
     printf("\nDigite el número de cuenta: ");
     scanf("%ld", &cuenta);
+    fflush(stdin);
 
     while (cuenta)
     {
@@ -192,12 +195,13 @@ void Retiro(CLIENTE A[], int T)         // Función qe efectúa la operación de
         {
             printf("\n\tDigite el saldo que va a retirar: ");
             scanf("%f", &ret);
+            fflush(stdin);
 
             while (ret)
             {
                 if (ret > A[i].sal)
                 {
-                    printf("\nEl saldo es insuficiente, solo hay en caja %f soles.\n¿Desea retirarlo todo? -S/N- : ");
+                    printf("\nEl saldo es insuficiente, solo hay en caja %.2f soles.\n¿Desea retirarlo todo? -S/N- : ", A[i].sal);
                     res = getchar();
                     fflush(stdin);
 
@@ -213,10 +217,11 @@ void Retiro(CLIENTE A[], int T)         // Función qe efectúa la operación de
 
                 printf("\nDigite otro monto que va a retirar -0 para salir- : ");
                 scanf("%f", &ret);
+                fflush(stdin);
             }
         }
 
-        printf("Digite otro número de cuenta del que va a efectuar un retiro -0 para salir- : ");
+        printf("\nDigite otro número de cuenta del que va a efectuar un retiro -0 para salir- : ");
         scanf("%ld", &cuenta);
     }
 }
