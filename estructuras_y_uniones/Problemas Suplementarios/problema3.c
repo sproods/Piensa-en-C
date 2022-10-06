@@ -18,6 +18,7 @@ typedef struct          // Estructura tipo profesor.
 void Lectura(PROFESOR *, int);
 void Exitoso(PROFESOR *, int);
 void Extranjeros(PROFESOR *, int);
+void Departamento_pagos(PROFESOR *, int);
 
 void main(void)
 {
@@ -35,6 +36,7 @@ void main(void)
     Lectura(EMPLE, TAM);
     Exitoso(EMPLE, TAM);
     Extranjeros(EMPLE, TAM);
+    Departamento_pagos(EMPLE, TAM);
 }
 
 void Lectura(PROFESOR A[], int T)
@@ -133,7 +135,35 @@ void Extranjeros(PROFESOR A[], int T)       // Función que calcula los gastos d
             total += A[i].sal[j];
 
     if (sum)
-        printf("\nEl monto total pagado a los profesores extranjeros es de $%.2f que representa el %.2f\% del total de erogado.", sum, (sum / total) * 100);
+        printf("\nEl monto total pagado a los profesores extranjeros es de $%.2f que representa el %.2f del total de erogado que es %.2f.", sum, (sum / total) * 100, total);
     else
         printf("\nNo hay profesores extranjeros\nEl pago total a los profesores es de $%.2f", total);
+}
+
+void Departamento_pagos(PROFESOR A[], int T)    // Función que calcula el total del pago de cada departamento.
+{
+    int i, j;
+    float saldo_Economia = 0.0, saldo_Derecho = 0.0, saldo_Computacion = 0.0, saldo_Administracion = 0.0;
+
+    for (i = 0; i < T; i++)
+    {
+        if (strcmp(A[i].dep, "Economía") == 0)
+            for (j = 0; j < T; j++)
+                saldo_Economia += A[i].sal[j];
+        else
+            if (strcmp(A[i].dep, "Derecho") == 0)
+                for (j = 0; j < T; j++)
+                    saldo_Derecho += A[i].sal[j];
+            else
+                if (strcmp(A[i].dep, "Computación") == 0)
+                    for (j = 0; j < T; j++)
+                        saldo_Computacion += A[i].sal[j];
+                else
+                    if (strcmp(A[i].dep, "Administración") == 0)
+                        for (j = 0; j < T; j++)
+                            saldo_Administracion += A[i].sal[j];
+    }
+
+    printf("\n\nSalarios en cada departamento:\n");
+    printf("\n\tEconomía: $%.2f\n\tDerecho: $%.2f\n\tComputación: $%.2f\n\tAdministración: $%.2f\n");
 }
