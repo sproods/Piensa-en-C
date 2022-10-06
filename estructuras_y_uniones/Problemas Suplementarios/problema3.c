@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 /* Univerdidad.
  * El programa realiza el cálculo del salario de los profesores de una universidad. */
@@ -99,6 +100,7 @@ void Exitoso(PROFESOR A[], int T)           // Función que calcula y muestra lo
 {
     int i, j, x;
     float sum, max = 0.0;
+    char pro[30], depa[20], nac[20];
 
     for (i = 0; i < T; i++)
     {
@@ -114,8 +116,32 @@ void Exitoso(PROFESOR A[], int T)           // Función que calcula y muestra lo
         }
     }
 
+    i = 0;
+    while (A[x].name_Address[i] != '\0')
+    {
+        pro[i] = toupper(A[x].name_Address[i]);
+        i++;
+    }
+    pro[i] = '\0';
+
+    i = 0;
+    while (A[x].dep[i] != '\0')
+    {
+        depa[i] = toupper(A[x].dep[i]);
+        i++;
+    }
+    depa[i] = '\0';
+
+    i = 0;
+    while (A[x].nacio[i] != '\0')
+    {
+        nac[i] = toupper(A[x].nacio[i]);
+        i++;
+    }
+    nac[i] = '\0';
+
     printf("\nEl profesor que ganó más el año pasado:\n");
-    printf("El profesor %s del departamento de %s de nacionalidad %s quien ganó $%.2f.\n", A[x].name_Address, A[x].dep, A[x].nacio, max);
+    printf("El profesor %s del departamento de %s de nacionalidad %s quien ganó $%.2f.\n", pro, depa, nac, max);
 }
 
 void Extranjeros(PROFESOR A[], int T)       // Función que calcula los gastos de paga a los profesores extranjeros y el porcentaje del total.
@@ -131,11 +157,11 @@ void Extranjeros(PROFESOR A[], int T)       // Función que calcula los gastos d
     }
 
     for (i = 0; i < T; i++)
-        for (j = 0; j < T; j++)
+        for (j = 0; j < 12; j++)
             total += A[i].sal[j];
 
     if (sum)
-        printf("\nEl monto total pagado a los profesores extranjeros es de $%.2f que representa el %.2f del total de erogado que es %.2f.", sum, (sum / total) * 100, total);
+        printf("\nEl monto total pagado a los profesores extranjeros es de $%.2f que representa el %.2f por ciento del total de erogado que es %.2f.", sum, (sum / total) * 100, total);
     else
         printf("\nNo hay profesores extranjeros\nEl pago total a los profesores es de $%.2f", total);
 }
@@ -166,4 +192,27 @@ void Departamento_pagos(PROFESOR A[], int T)    // Función que calcula el total
 
     printf("\n\nSalarios en cada departamento:\n");
     printf("\n\tEconomía: $%.2f\n\tDerecho: $%.2f\n\tComputación: $%.2f\n\tAdministración: $%.2f\n", saldo_Economia, saldo_Derecho, saldo_Computacion, saldo_Administracion);
+
+    if (saldo_Economia > saldo_Derecho)
+        if (saldo_Economia > saldo_Computacion)
+            if (saldo_Economia > saldo_Administracion)
+                printf("\nSe gastó más en Economía, un monto de $%.2f\n", saldo_Economia);
+            else
+                printf("\nSe gastó más en Administraciónn, un monto de $%.2f\n", saldo_Administracion);
+        else
+            if (saldo_Computacion > saldo_Administracion)
+                printf("\nSe gastó más en Computación, un monto de %.2f\n", saldo_Computacion);
+            else
+                printf("\nSe gastó más en Administración, un monto de %.2f\n", saldo_Administracion);
+    else
+        if (saldo_Derecho > saldo_Computacion)
+            if (saldo_Derecho > saldo_Administracion)
+                printf("\nSe gastó más en Derecho, un monto de %.2f\n", saldo_Derecho);
+            else
+                printf("\nSe gastó más en Administración, un monto de %.2f\n", saldo_Administracion);
+        else
+            if (saldo_Computacion > saldo_Administracion)
+                printf("\nSe gastó más en Computaición, un montó de %.2f\n", saldo_Computacion);
+            else
+                printf("\nSe gastó más en Administración, un montó de %.2f\n", saldo_Administracion);
 }
