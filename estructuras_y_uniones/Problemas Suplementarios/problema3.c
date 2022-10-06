@@ -148,22 +148,22 @@ void Departamento_pagos(PROFESOR A[], int T)    // Función que calcula el total
     for (i = 0; i < T; i++)
     {
         if (strcmp(A[i].dep, "Economía") == 0)
-            for (j = 0; j < T; j++)
+            for (j = 0; j < 12; j++)
                 saldo_Economia += A[i].sal[j];
         else
             if (strcmp(A[i].dep, "Derecho") == 0)
-                for (j = 0; j < T; j++)
+                for (j = 0; j < 12; j++)
                     saldo_Derecho += A[i].sal[j];
             else
                 if (strcmp(A[i].dep, "Computación") == 0)
-                    for (j = 0; j < T; j++)
+                    for (j = 0; j < 12; j++)
                         saldo_Computacion += A[i].sal[j];
                 else
                     if (strcmp(A[i].dep, "Administración") == 0)
-                        for (j = 0; j < T; j++)
+                        for (j = 0; j < 12; j++)
                             saldo_Administracion += A[i].sal[j];
     }
 
     printf("\n\nSalarios en cada departamento:\n");
-    printf("\n\tEconomía: $%.2f\n\tDerecho: $%.2f\n\tComputación: $%.2f\n\tAdministración: $%.2f\n");
+    printf("\n\tEconomía: $%.2f\n\tDerecho: $%.2f\n\tComputación: $%.2f\n\tAdministración: $%.2f\n", saldo_Economia, saldo_Derecho, saldo_Computacion, saldo_Administracion);
 }
