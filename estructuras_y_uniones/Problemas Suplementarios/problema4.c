@@ -23,6 +23,9 @@ typedef struct          // Estructura de tipo EMPLEADO.
 
 void Lectura(EMPLEADO *, int);
 void Ordena(EMPLEADO *, int);
+void Alta(EMPLEADO *, int *);
+void Baja(EMPLEADO *, int *);
+void Datos(EMPLEADO *, int);
 
 void main(void)
 {
@@ -39,6 +42,7 @@ void main(void)
 
     Lectura(EMPLE, TAM);
     Ordena(EMPLE, TAM);
+
 }
 
 void Lectura(EMPLEADO A[], int T)
@@ -67,6 +71,155 @@ void Lectura(EMPLEADO A[], int T)
         fflush(stdin);
 
         printf("\tColonia: ");
-        
+        gets(A[i].domi->colonia);
+        fflush(stdin);
+
+        printf("\tCódigo Postal: ");
+        gets(A[i].domi->cp);
+        fflush(stdin);
+
+        printf("\tCiudad: ");
+        gets(A[i].domi->ciu);
+        fflush(stdin);
+
+        printf("\tTeléfono: ");
+        gets(A[i].domi->tel);
+        fflush(stdin);
+
+        printf("Salario: ");
+        scanf("%f", &A[i].sal);
+        fflush(stdin);
     }
+}
+
+void Ordenar(EMPLEADO A[], int T)
+{
+    int i, j, min, x;
+    EMPLEADO aux;
+
+    for (i = 0; i < T - 1; i++)
+    {
+        min = A[i].num;
+        x = i;
+
+        for (j = i + 1; j < T; j++)
+        {
+            if (A[j].num < min)
+            {
+                min = A[j].num;
+                x = j;
+            }
+        }
+
+        aux = A[i];
+        A[i] = A[x];
+        A[x] = aux;
+    }
+}
+
+void Alta(EMPLEADO A[], int *T)          // Función que da de alta a un empleado, incorporando todos los datos correspondientes.
+{
+    int i, j, numero;
+
+    printf("\nDigite el número del empleado que desea incorporar: ");
+    scanf("%d", &numero);
+    fflush(stdin);
+
+    while (*T <= 100 && numero)
+    {
+        i = 0;
+
+        while ((i < *T) && (A[i].num < numero))
+            i++;
+
+        if (i == *T)
+        {
+            A[i].num = numero;
+
+            printf("\nNombre: ");
+            gets(A[i].name);
+            fflush(stdin);
+
+            printf("\nDepartamento: ");
+            gets(A[i].depa);
+            fflush(stdin);
+
+            printf("\nDomicilio: ");
+            printf("\n\tCalle y número: ");
+            gets(A[i].domi->calle_Numero);
+            fflush(stdin);
+
+            printf("\tColonia: ");
+            gets(A[i].domi->colonia);
+            fflush(stdin);
+
+            printf("\tCódigo Postal: ");
+            gets(A[i].domi->cp);
+            fflush(stdin);
+
+            printf("\tCiudad: ");
+            gets(A[i].domi->ciu);
+            fflush(stdin);
+
+            printf("\tTeléfono: ");
+            gets(A[i].domi->tel);
+            fflush(stdin);
+
+            printf("Salario: ");
+            scanf("%f", &A[i].sal);
+            fflush(stdin);
+        }
+        else
+            if (A[i].num == numero)
+                printf("\nEl empleado ya se encuentra registrado en la planilla.");
+            else
+            {
+                for (j = *T; j > i; j--)
+                    A[j] = A[j - 1];
+
+                A[i].num = numero;
+
+                printf("\nNombre: ");
+                gets(A[i].name);
+                fflush(stdin);
+
+                printf("\nDepartamento: ");
+                gets(A[i].depa);
+                fflush(stdin);
+
+                printf("\nDomicilio: ");
+                printf("\n\tCalle y número: ");
+                gets(A[i].domi->calle_Numero);
+                fflush(stdin);
+
+                printf("\tColonia: ");
+                gets(A[i].domi->colonia);
+                fflush(stdin);
+
+                printf("\tCódigo Postal: ");
+                gets(A[i].domi->cp);
+                fflush(stdin);
+
+                printf("\tCiudad: ");
+                gets(A[i].domi->ciu);
+                fflush(stdin);
+
+                printf("\tTeléfono: ");
+                gets(A[i].domi->tel);
+                fflush(stdin);
+
+                printf("Salario: ");
+                scanf("%f", &A[i].sal);
+                fflush(stdin);
+
+                *T = *T + 1;
+            }
+        
+        printf("\nDigite otro número de empleado -0 para salir- : ");
+        scanf("%d", &numero);
+        fflush(stdin);
+    }
+
+    if (*T == 100)
+        printf("\nEl registro está completo.");
 }
