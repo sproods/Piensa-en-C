@@ -223,3 +223,25 @@ void Alta(EMPLEADO A[], int *T)          // Función que da de alta a un emplead
     if (*T == 100)
         printf("\nEl registro está completo.");
 }
+
+void Baja(EMPLEADO A[], int *T)             // Función que da de baja a un empleado.
+{
+    int i, j, numero;
+
+    printf("\nDigite el número del empleado que desea dar de baja: ");
+    scanf("%d", &numero);
+    fflush(stdin);
+
+    while (numero)
+    {
+        i = 0;
+
+        while (i < *T && A[i].num < numero)
+            i++;
+
+        if ((i == *T) || (A[i].num > numero))
+            printf("\nEl número del empleado es incorrecto.");
+        else
+            if ()
+    }
+}
