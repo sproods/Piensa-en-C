@@ -263,7 +263,7 @@ void Baja(EMPLEADO A[], int *T)             // Función que da de baja a un empl
     scanf("%d", &numero);
     fflush(stdin);
 
-    while (numero)
+    while ((*T > 0) && numero)
     {
         i = 0;
 
@@ -273,8 +273,20 @@ void Baja(EMPLEADO A[], int *T)             // Función que da de baja a un empl
         if ((i == *T) || (A[i].num > numero))
             printf("\nEl número del empleado es incorrecto.");
         else
-            ;
+        {
+            for (j = i; j < *T - 1; j++)        // Se elimina el componente del arreglo avanzando casillas.
+                A[j] = A[j + 1];
+            
+            *T = *T - 1;
+        }
+
+        printf("Digite el númer de otro empleado que desea dar de baja -0 para salir- : ");
+        scanf("%d", &numero);
+        fflush(stdin);
     }
+
+    if (*T == 0)
+        printf("\nYa no quedan empleados a los que dar de baja :(\n");
 }
 
 void Listado(EMPLEADO A[], int T)     // Función que muestra en pantalla los datos de los empleados de un mismo departamento.
@@ -301,7 +313,7 @@ void Listado(EMPLEADO A[], int T)     // Función que muestra en pantalla los da
             {
                 if (strcmp(A[i].depa, depar) == 0)
                 {
-                    printf("\n\tNúmero de empleado:\t%5d\n\tNombre:\t%5s\n\tSalario:\n%.2f\n", A[i].num, A[i].name, A[i].sal);
+                    printf("\n\tNúmero de empleado:\t%5d\n\tNombre:\t%5s\n\tSalario:\t%5.2f\n", A[i].num, A[i].name, A[i].sal);
                 }
             }
         }
@@ -313,7 +325,7 @@ void Listado(EMPLEADO A[], int T)     // Función que muestra en pantalla los da
             {
                 if (strcmp(A[i].depa, depar) == 0)
                 {
-                    printf("\n\tNúmero de empleado:\t%5d\n\tNombre:\t%5s\n\tSalario:\n%.2f\n", A[i].num, A[i].name, A[i].sal);
+                    printf("\n\tNúmero de empleado:\t%5d\n\tNombre:\t%5s\n\tSalario:\t%5.2f\n", A[i].num, A[i].name, A[i].sal);
                 }
             }
         }
