@@ -25,11 +25,12 @@ void Lectura(EMPLEADO *, int);
 void Ordena(EMPLEADO *, int);
 void Alta(EMPLEADO *, int *);
 void Baja(EMPLEADO *, int *);
-void Datos(EMPLEADO *, int);
+void Listado(EMPLEADO *, int);
+void Listado_Nombres(EMPLEADO *, int);
 
 void main(void)
 {
-    int TAM;
+    int TAM, elec;
     EMPLEADO EMPLE[100];
 
     do
@@ -43,6 +44,36 @@ void main(void)
     Lectura(EMPLE, TAM);
     Ordena(EMPLE, TAM);
 
+    do
+    {
+    printf("\nElija una de las siguientes opciones:\n");
+    printf("\n\t1. Dar de alta a un empleado.\n\t2. Dar de baja a un empleado.\n\t3. Lista de empleados de un departamento.\n\t4. Nombres de todos los empleados.\n");
+    scanf("%d", &elec);
+    fflush(stdin);
+    }
+    while (elec < 1 || elec > 4);
+
+    while (elec)
+    {
+        switch (elec)
+        {
+            case 1: Alta(EMPLE, &TAM);
+                break;
+            case 2: Baja(EMPLE, &TAM);
+                break;
+            case 3: Listado(EMPLE, TAM);
+                break;
+            case 4: Listado_Nombres(EMPLE, TAM);
+                break;
+        }
+
+        printf("\nElija una de las siguientes opciones:\n");
+        printf("\n\t1. Dar de alta a un empleado.\n\t2. Dar de baja a un empleado.\n\t3. Lista de empleados de un departamento.\n\t4. Nombres de todos los empleados.\n\t0. Salir del programa.\n");
+        scanf("%d", &elec);
+        fflush(stdin);
+    }
+
+    printf("\n¡Gracias por su consulta!\n");
 }
 
 void Lectura(EMPLEADO A[], int T)
@@ -92,7 +123,7 @@ void Lectura(EMPLEADO A[], int T)
     }
 }
 
-void Ordenar(EMPLEADO A[], int T)
+void Ordena(EMPLEADO A[], int T)
 {
     int i, j, min, x;
     EMPLEADO aux;
@@ -242,6 +273,62 @@ void Baja(EMPLEADO A[], int *T)             // Función que da de baja a un empl
         if ((i == *T) || (A[i].num > numero))
             printf("\nEl número del empleado es incorrecto.");
         else
-            if ()
+            ;
     }
+}
+
+void Listado(EMPLEADO A[], int T)     // Función que muestra en pantalla los datos de los empleados de un mismo departamento.
+{
+    int i, x = 0;
+    char depar[30];
+
+    printf("\nDigite el departamento del que desea conocer los datos de los empleados: ");
+    gets(depar);
+    fflush(stdin);
+
+    for (i = 0; i < T; i++)
+        if (strcmp(A[i].depa, depar) == 0)
+            x++;
+
+    if (x == 0)
+        printf("\nEl departamento %s no está en la lista.", depar);
+    else
+        if (x == 1)
+        {
+            printf("\n\nLos datos del empleado del departamento de %s son:", depar);
+
+            for (i = 0; i < T; i++)
+            {
+                if (strcmp(A[i].depa, depar) == 0)
+                {
+                    printf("\n\tNúmero de empleado:\t%5d\n\tNombre:\t%5s\n\tSalario:\n%.2f\n", A[i].num, A[i].name, A[i].sal);
+                }
+            }
+        }
+        else
+        {
+            printf("\n\nLos datos de los empleados del departamento de %s son:", depar);
+
+            for (i = 0; i < T; i++)
+            {
+                if (strcmp(A[i].depa, depar) == 0)
+                {
+                    printf("\n\tNúmero de empleado:\t%5d\n\tNombre:\t%5s\n\tSalario:\n%.2f\n", A[i].num, A[i].name, A[i].sal);
+                }
+            }
+        }
+}
+
+void Listado_Nombres(EMPLEADO A[], int T)       // Función que muestra en pantalla todos los nombres de los empleados en planilla.
+{
+    int i;
+
+    printf("\nNombres de todos los empleados de la empresa");
+
+    for (i = 0; i < T; i++)
+    {
+        printf("\n\tNombre y apellido:\t%5s", A[i].name);
+    }
+
+    printf("\n");
 }
