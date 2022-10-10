@@ -84,10 +84,62 @@ void Lectura(Producto A[], int T)
 
 void Compras(Producto A[], int T)
 {
-    int i;
+    int i, clave, cant;
+
+    printf("\nDigite la clave del producto: ");
+    scanf("%d", &clave);
+    fflush(stdin);
+
+    while (clave)
+    {
+        while (i < T && A[i].cla < clave)
+            i++;
+
+        if (i == T || A[i].cla > clave)
+            printf("\nLa clave del producto es incorrecta\n");
+        else
+        {
+            printf("\nDigite la cantidad que va a comprar del producto %s: ", A[i].nom);
+            scanf("%d", &cant);
+            fflush(stdin);
+
+            A[i].exi += cant;
+        }
+
+        printf("\nDigite la clave de otro producto -0 para salir- : ");
+        scanf("%d", &clave);
+        fflush(stdin);
+    }
 }
 
 void Ventas(Producto A[], int T)
 {
-    int i;
+    int i, clave, cant;
+    char resp;
+
+    printf("\nDigite la clave del producto: ");
+    scanf("%d", &clave);
+    fflush(stdin);
+
+    while (clave)
+    {
+        while (i < T && A[i].cla < clave)
+            i++;
+
+        if (i == T || A[i].cla > clave)
+            printf("\nLa clave del producto es incorrecta\n");
+        else
+        {
+            printf("\nDigite la cantidad que desea vender: ");
+            scanf("%d", &cant);
+            fflush(stdin);
+
+            if (A[i].exi < cant)
+            {
+                printf("\nNo hay suficientes productos para su venta, solo quedan %d en stock. ¿Desea conprarlos? -S/N-: ", A[i].exi);
+                resp = getchar();
+                fflush(stdin);
+            }
+        }
+    }
 }
