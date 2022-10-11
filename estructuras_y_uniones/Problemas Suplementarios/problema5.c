@@ -13,11 +13,13 @@ typedef struct          // Estructura de tipo estructura Producto.
 void Lectura(Producto *, int);
 void Compras(Producto *, int);
 void Ventas(Producto *, int);
+void Ordena(Producto *, int);
+void Lista(Producto *, int);
 
 void main(void)
 {
     Producto TIENDA[100];
-    int TAM;
+    int TAM, dtran = 1;
     char tran;
 
     do
@@ -29,16 +31,17 @@ void main(void)
     while (TAM > 100 || TAM < 1);
 
     Lectura(TIENDA, TAM);
+    Ordena(TIENDA, TAM);
 
     do
     {
-        printf("\nDigite, a continuación, el tipo de transacción que desea realizar:\n\t'C' Compras\n\t'V' Ventas\n");
+        printf("\nDigite, a continuación, el tipo de transacción que desea realizar:\n\tC - Compras\n\tV - Ventas\n\tL - Lista de los productos\n");
         tran = getchar();
         fflush(stdin);
     }
-    while (tran != 'C' && tran != 'V');
+    while (tran != 'C' && tran != 'V' && tran != 'L');
 
-    while (tran)
+    while (tran == 'C' || tran == 'V' || tran == 'L' || dtran != 0)
     {
         switch (tran)
         {
@@ -46,15 +49,20 @@ void main(void)
                 break;
             case 'V': Ventas(TIENDA, TAM);
                 break;
+            case 'L': Lista(TIENDA, TAM);
+                break;
         }
 
         do
         {
-            printf("\nDigite, si desea, otra transacción:\n\t'C' Compras\n\t'V' Ventas\n\t0 Salir\n");
+            printf("\nDigite, si desea, otra transacción:\n\tC - Compras\n\tV - Ventas\n\tL - Lista de productos\n\t0 - Salir\n");
             tran = getchar();
             fflush(stdin);
+
+            if (tran == '0')
+                dtran = 0;
         }
-        while (tran != 'C' && tran != 'V' && tran != '0');
+        while ((tran != 'C' && tran != 'V' && tran != 'L') && dtran);
     }
 
     printf("\n¡Qué tenga buen día!\n");
@@ -92,6 +100,7 @@ void Compras(Producto A[], int T)
 
     while (clave)
     {
+        i = 0;
         while (i < T && A[i].cla < clave)
             i++;
 
@@ -123,6 +132,7 @@ void Ventas(Producto A[], int T)
 
     while (clave)
     {
+        i = 0;
         while (i < T && A[i].cla < clave)
             i++;
 
@@ -136,10 +146,62 @@ void Ventas(Producto A[], int T)
 
             if (A[i].exi < cant)
             {
-                printf("\nNo hay suficientes productos para su venta, solo quedan %d en stock. ¿Desea conprarlos? -S/N-: ", A[i].exi);
-                resp = getchar();
-                fflush(stdin);
+                do
+                {
+                    printf("\nNo hay suficientes productos para su venta, solo quedan %d en stock. ¿Desea conprarlos? -S/N-: ", A[i].exi);
+                    resp = getchar();
+                    fflush(stdin);
+                }
+                while (resp != 'S' && resp != 'N');
+
+                if (resp == 'S')
+                    A[i].exi = 0;
+            }
+            else
+            {
+                A[i].exi -= cant;
             }
         }
+
+        printf("\nDigite la clave de otro producto que desea vender -0 para salir- : ");
+        scanf("%d", &clave);
+        fflush(stdin);
     }
+}
+
+void Ordena(Producto A[], int T)
+{
+    int i, j, x, min;
+    Producto aux;
+
+    for (i = 0; i < T - 1; i++)
+    {
+        min = A[i].cla;
+        x = i;
+
+        for (j = i + 1; j < T; j++)
+        {
+            if (A[j].cla < min)
+            {
+                min = A[j].cla;
+                x = j;
+            }
+        }
+
+        aux = A[i];
+        A[i] = A[x];
+        A[x] = aux;
+    }
+}
+
+void Lista(Producto A[], int T)
+{
+    int i;
+
+    printf("\nLista de los productos y las cantindades existentes en stock\n");
+
+    for (i = 0; i < T; i++)
+        printf("\n\tNombre del producto: %s\tCantidad: %d", A[i].nom, A[i].exi);
+
+    printf("\n");
 }
