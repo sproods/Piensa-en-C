@@ -44,6 +44,9 @@ typedef struct          // Estructura de tipo Alumno.
 /* Prototipos de funciones. */
 void Lectura(Alumno *, int);
 void Ordena(Alumno *, int);
+void Lista(Alumno *, int);
+
+
 
 /* Programa principal. */
 void main(void)
@@ -61,12 +64,13 @@ void main(void)
 
     Lectura(ESCUELA, TAM);
     Ordena(ESCUELA, TAM);
+    Lista(ESCUELA, TAM);
 }
 
 /* Declaración de la función Lectura. */
 void Lectura(Alumno A[], int T)
 {
-    int i, elec;
+    int i, j, elec;
 
     for (i = 0; i < T; i++)
     {
@@ -132,15 +136,53 @@ void Lectura(Alumno A[], int T)
 
         // Calificaciones.
         printf("\tCalificaciones:");
-        for (i = 0; i < 7; i++)
+        for (j = 0; j < 7; j++)
         {
-            printf("\n\t\tMateria %d: ", i + 1);
-            gets(A[i].level.cal->mate);
+            printf("\n\t\tMateria %d: ", j + 1);
+            gets(A[i].level.cal[j].mate);
             fflush(stdin);
 
-            printf("\t\tPromedio de la materia %s: ", A[i].level.cal->mate);
-            scanf("%f", &A[i].level.cal->prom);
+            printf("\t\tPromedio de la materia %s: ", A[i].level.cal[j].mate);
+            scanf("%f", &A[i].level.cal[j].prom);
             fflush(stdin);
         }
+    }
+}
+
+/* Declaración de la función Ordena. Función que ordena de manera craciete en función de la matrícula de los alumnos. */
+void Ordena(Alumno A[], int T)
+{
+    int i, j, min, x;
+    Alumno aux;
+
+    for (i = 0; i < T - 1; i++)
+    {
+        min = A[i].matri;
+        x = i;
+
+        for (j = i + 1; j < T; j++)
+        {
+            if (A[j].matri < min)
+            {
+                min = A[j].matri;
+                x = j;
+            }
+        }
+
+        aux = A[i];
+        A[i] = A[x];
+        A[x] = aux;
+    }
+}
+
+/* Declaración de la función Lista. Función que muestra en pantalla los la matrícula y el nombre de cada alumno. */
+void Lista(Alumno A[], int T)
+{
+    int i;
+
+    printf("\nDatos de los alumnos:\n");
+    for (i = 0; i < T; i++)
+    {
+        printf("\n\tMatrícula: %d\n\tNombre: %3s\n", A[i].matri, A[i].name);
     }
 }
