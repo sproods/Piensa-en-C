@@ -127,7 +127,7 @@ void Lectura(Alumno A[], int T)
                 break;
             case 2: strcpy(A[i].level.niv, "Secundaria");
                 break;
-            case 3: strcpy(A[i].level.niv, "¨Preparatoria");
+            case 3: strcpy(A[i].level.niv, "Preparatoria");
                 break;
         }
 
@@ -240,7 +240,7 @@ void Lista_promedios(Alumno A[], int T)
 
     do
     {
-        printf("\nEscoja el nivel de estudios:\n\t1- Primaria   2- Secundaria   3-Preparatoria\n");
+        printf("\nEscoja el nivel de estudios:\n\t1- Primaria   2- Secundaria   3- Preparatoria\n");
         scanf("%d", &elec);
         fflush(stdin);
     }
@@ -261,8 +261,6 @@ void Lista_promedios(Alumno A[], int T)
     scanf("%d", &salon);
     fflush(stdin);
 
-    
-
     while (elec)
     {        
         for (i = 0; i < T; i++)
@@ -276,7 +274,7 @@ void Lista_promedios(Alumno A[], int T)
                     {
                         sumP = 0.0;
                         promg = 0.0;
-                        
+
                         // Cálculo del promedio general (promg)
                         for (j = 0; j < 7; j++)
                             sumP += A[i].level.cal[j].prom;
