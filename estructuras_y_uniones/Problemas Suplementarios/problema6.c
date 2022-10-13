@@ -261,17 +261,22 @@ void Lista_promedios(Alumno A[], int T)
     scanf("%d", &salon);
     fflush(stdin);
 
-    // Conversión del valor del salón en enteros.
-    dsalon = atoi(A[i].level.sal);
+    
 
     while (elec)
-    {
+    {        
         for (i = 0; i < T; i++)
         {
+            // Conversión del valor del salón en enteros.
+            dsalon = atoi(A[i].level.sal);
+            
             if (strcmp(A[i].level.niv, nivel) == 0)
                 if (A[i].level.gra == grado)
                     if (dsalon == salon)
                     {
+                        sumP = 0.0;
+                        promg = 0.0;
+                        
                         // Cálculo del promedio general (promg)
                         for (j = 0; j < 7; j++)
                             sumP += A[i].level.cal[j].prom;
