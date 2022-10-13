@@ -46,6 +46,7 @@ void Lectura(Alumno *, int);
 void Ordena(Alumno *, int);
 void Lista(Alumno *, int);
 void Promedio_alumno(Alumno *, int);
+void Lista_promedios(Alumno *, int);
 
 
 
@@ -67,6 +68,7 @@ void main(void)
     Ordena(ESCUELA, TAM);
     Lista(ESCUELA, TAM);
     Promedio_alumno(ESCUELA, TAM);
+    Lista_promedios(ESCUELA, TAM);
 }
 
 /* Declaración de la función Lectura. */
@@ -225,4 +227,24 @@ void Promedio_alumno(Alumno A[], int T)
         scanf("%d", &mat);
         fflush(stdin);
     }
+}
+
+/* Declaración de la función Lista_promedios. Función que muestra en pantalla la matrícula, el nombre y el promedio general de todos
+ * los alumnos coincidan con el nivel de estudios, el grado y el salón digitados por el usuario. */
+void Lista_promedios(Alumno A[], int T)
+{
+    int i, j, grado, salon;
+    char nivel[15];
+
+    printf("\nDigite el nivel de estudios: ");
+    gets(nivel);
+    fflush(stdin);
+    printf("Digite el grado: ");
+    scanf("%d", &grado);
+    fflush(stdin);
+    printf("Digite el salón: ");
+    scanf("%d", &salon);
+    fflush(stdin);
+
+    while ()
 }
