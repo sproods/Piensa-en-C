@@ -45,6 +45,7 @@ typedef struct          // Estructura de tipo Alumno.
 void Lectura(Alumno *, int);
 void Ordena(Alumno *, int);
 void Lista(Alumno *, int);
+void Promedio_alumno(Alumno *, int);
 
 
 
@@ -65,6 +66,7 @@ void main(void)
     Lectura(ESCUELA, TAM);
     Ordena(ESCUELA, TAM);
     Lista(ESCUELA, TAM);
+    Promedio_alumno(ESCUELA, TAM);
 }
 
 /* Declaración de la función Lectura. */
@@ -184,5 +186,43 @@ void Lista(Alumno A[], int T)
     for (i = 0; i < T; i++)
     {
         printf("\n\tMatrícula: %d\n\tNombre: %3s\n", A[i].matri, A[i].name);
+    }
+}
+
+/* Declaración de la función Promedio_alumno. Función que calcula el promedio general del alumno de matrícula digitada. */
+void Promedio_alumno(Alumno A[], int T)
+{
+    int i, j, mat;
+    float sum, prom;
+
+    printf("\nDigite el número de la matrícula del alumno: ");
+    scanf("%d", &mat);
+    fflush(stdin);
+
+    while (mat)
+    {
+        i = 0;
+
+        while (i < T && mat > A[i].matri)
+            i++;
+
+        if (i == T || A[i].matri > mat)
+            printf("\nLa matrícula digitada es incorrecta.\n");
+        
+        if (A[i].matri == mat)
+        {
+            sum = 0.0;
+
+            for (j = 0; j < 7; j++)
+                sum += A[i].level.cal[j].prom;
+
+            prom = sum / 7;
+
+            printf("\nEl promedio general del alumno %s es %.2f\n", A[i].name, prom);
+        }
+
+        printf("\nDigite otro número de matrícula -0 para salir- : ");
+        scanf("%d", &mat);
+        fflush(stdin);
     }
 }
