@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 /* Escuela.
  * El programa realiza un detallado informe sobre los datos de los alumnos de una escuela en la Ciudad de México. */
@@ -233,12 +234,26 @@ void Promedio_alumno(Alumno A[], int T)
  * los alumnos coincidan con el nivel de estudios, el grado y el salón digitados por el usuario. */
 void Lista_promedios(Alumno A[], int T)
 {
-    int i, j, grado, salon;
+    int i, j, grado, salon, elec, dsalon;
+    float promg, sumP;
     char nivel[15];
 
-    printf("\nDigite el nivel de estudios: ");
-    gets(nivel);
-    fflush(stdin);
+    do
+    {
+        printf("\nEscoja el nivel de estudios:\n\t1- Primaria   2- Secundaria   3-Preparatoria\n");
+        scanf("%d", &elec);
+        fflush(stdin);
+    }
+    while (elec < 1 || elec > 3);
+    switch (elec)
+    {
+        case 1: strcpy(nivel, "Primaria");
+            break;
+        case 2: strcpy(nivel, "Secundaria");
+            break;
+        case 3: strcpy(nivel, "Preparatoria");
+            break;
+    }
     printf("Digite el grado: ");
     scanf("%d", &grado);
     fflush(stdin);
@@ -246,5 +261,51 @@ void Lista_promedios(Alumno A[], int T)
     scanf("%d", &salon);
     fflush(stdin);
 
-    while ()
+    // Conversión del valor del salón en enteros.
+    dsalon = atoi(A[i].level.sal);
+
+    while (elec)
+    {
+        for (i = 0; i < T; i++)
+        {
+            if (strcmp(A[i].level.niv, nivel) == 0)
+                if (A[i].level.gra == grado)
+                    if (dsalon == salon)
+                    {
+                        // Cálculo del promedio general (promg)
+                        for (j = 0; j < 7; j++)
+                            sumP += A[i].level.cal[j].prom;
+                        promg = sumP / 7;
+
+                        printf("\n\tMatrícula: %d\n\tNombre: %s\n\tPromedio General: %.2f\n", A[i].matri, A[i].name, promg);
+                    }
+        }
+
+        do
+        {
+            printf("\nEscoja un nivel de estudios: \n\t1- Primaria   2- Secundaria   3- Preparatoria  0- Salir\n");
+            scanf("%d", &elec);
+            fflush(stdin);
+        }
+        while (elec < 0 || elec > 3);
+
+        if (elec != 0)
+        {
+            switch (elec)
+            {
+                case 1: strcpy(nivel, "Primaria");
+                    break;
+                case 2: strcpy(nivel, "Secundaria");
+                    break;
+                case 3: strcpy(nivel, "Preparatoria");
+                    break;
+            }
+            printf("Digite el grado: ");
+            scanf("%d", &grado);
+            fflush(stdin);
+            printf("Digite el salón: ");
+            scanf("%d", &salon);
+            fflush(stdin);
+        }
+    }
 }
