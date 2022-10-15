@@ -318,8 +318,8 @@ void Lista_promedios(Alumno A[], int T)
 /* Declaración de la función Mayor_promedio. Función que muestra en pantalla al alumno con mayor promedio de un determinado nivel, grado y salón. */
 void Mayor_promedio(Alumno A[], int T)
 {
-    int i, j, grado, salon, elec, dsalon;
-    float promg, sumP;
+    int i, j, grado, salon, elec, dsalon, max_index;
+    float promg, sumP, max_prom;
     char nivel[15];
 
     do
@@ -346,7 +346,10 @@ void Mayor_promedio(Alumno A[], int T)
     fflush(stdin);
 
     while (elec)
-    {        
+    {
+	max_prom = 0.0;
+	max_index = 0;
+
         for (i = 0; i < T; i++)
         {
             // Conversión del valor del salón en enteros.
@@ -364,9 +367,15 @@ void Mayor_promedio(Alumno A[], int T)
                             sumP += A[i].level.cal[j].prom;
                         promg = sumP / 7;
 
-                        printf("\n\tMatrícula: %d\n\tNombre: %s\n\tPromedio General: %.2f\n", A[i].matri, A[i].name, promg);
+			if (promg > max_prom)
+                        {
+                            max_prom = promg;
+                            max_index = i;
+                        }
                     }
         }
+
+        printf("\nEl alumno con el mayor promedio del nivel %s, grado %d y salón %d, es %s, con promedio general %.2f\n", nivel, grado, salon, A[max_index].name, max_prom);
 
         do
         {
