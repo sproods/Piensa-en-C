@@ -48,6 +48,7 @@ void Ordena(Alumno *, int);
 void Lista(Alumno *, int);
 void Promedio_alumno(Alumno *, int);
 void Lista_promedios(Alumno *, int);
+void Mayor_promedio(Alumno *, int);
 
 
 
@@ -70,6 +71,7 @@ void main(void)
     Lista(ESCUELA, TAM);
     Promedio_alumno(ESCUELA, TAM);
     Lista_promedios(ESCUELA, TAM);
+    Mayor_promedio(ESCUELA, TAM);
 }
 
 /* Declaración de la función Lectura. */
@@ -233,6 +235,88 @@ void Promedio_alumno(Alumno A[], int T)
 /* Declaración de la función Lista_promedios. Función que muestra en pantalla la matrícula, el nombre y el promedio general de todos
  * los alumnos coincidan con el nivel de estudios, el grado y el salón digitados por el usuario. */
 void Lista_promedios(Alumno A[], int T)
+{
+    int i, j, grado, salon, elec, dsalon;
+    float promg, sumP;
+    char nivel[15];
+
+    do
+    {
+        printf("\nEscoja el nivel de estudios:\n\t1- Primaria   2- Secundaria   3- Preparatoria\n");
+        scanf("%d", &elec);
+        fflush(stdin);
+    }
+    while (elec < 1 || elec > 3);
+    switch (elec)
+    {
+        case 1: strcpy(nivel, "Primaria");
+            break;
+        case 2: strcpy(nivel, "Secundaria");
+            break;
+        case 3: strcpy(nivel, "Preparatoria");
+            break;
+    }
+    printf("Digite el grado: ");
+    scanf("%d", &grado);
+    fflush(stdin);
+    printf("Digite el salón: ");
+    scanf("%d", &salon);
+    fflush(stdin);
+
+    while (elec)
+    {        
+        for (i = 0; i < T; i++)
+        {
+            // Conversión del valor del salón en enteros.
+            dsalon = atoi(A[i].level.sal);
+            
+            if (strcmp(A[i].level.niv, nivel) == 0)
+                if (A[i].level.gra == grado)
+                    if (dsalon == salon)
+                    {
+                        sumP = 0.0;
+                        promg = 0.0;
+
+                        // Cálculo del promedio general (promg)
+                        for (j = 0; j < 7; j++)
+                            sumP += A[i].level.cal[j].prom;
+                        promg = sumP / 7;
+
+                        printf("\n\tMatrícula: %d\n\tNombre: %s\n\tPromedio General: %.2f\n", A[i].matri, A[i].name, promg);
+                    }
+        }
+
+        do
+        {
+            printf("\nEscoja un nivel de estudios: \n\t1- Primaria   2- Secundaria   3- Preparatoria  0- Salir\n");
+            scanf("%d", &elec);
+            fflush(stdin);
+        }
+        while (elec < 0 || elec > 3);
+
+        if (elec != 0)
+        {
+            switch (elec)
+            {
+                case 1: strcpy(nivel, "Primaria");
+                    break;
+                case 2: strcpy(nivel, "Secundaria");
+                    break;
+                case 3: strcpy(nivel, "Preparatoria");
+                    break;
+            }
+            printf("Digite el grado: ");
+            scanf("%d", &grado);
+            fflush(stdin);
+            printf("Digite el salón: ");
+            scanf("%d", &salon);
+            fflush(stdin);
+        }
+    }
+}
+
+/* Declaración de la función Mayor_promedio. Función que muestra en pantalla al alumno con mayor promedio de un determinado nivel, grado y salón. */
+void Mayor_promedio(Alumno A[], int T)
 {
     int i, j, grado, salon, elec, dsalon;
     float promg, sumP;
