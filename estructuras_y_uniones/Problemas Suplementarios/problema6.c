@@ -364,7 +364,7 @@ void Lista_promedios(Alumno A[], int T)
 /* Declaración de la función Mayor_promedio. Función que muestra en pantalla al alumno con mayor promedio de un determinado nivel, grado y salón. */
 void Mayor_promedio(Alumno A[], int T)
 {
-    int i, j, grado, salon, elec, dsalon, max_index;
+    int i, j, grado, salon, elec, dsalon, max_index, conteo;
     float promg, sumP, max_prom;
     char nivel[15];
 
@@ -393,35 +393,53 @@ void Mayor_promedio(Alumno A[], int T)
 
     while (elec)
     {
-	max_prom = 0.0;
-	max_index = 0;
+        conteo = 0;
 
         for (i = 0; i < T; i++)
         {
             // Conversión del valor del salón en enteros.
             dsalon = atoi(A[i].level.sal);
-            
+
             if (strcmp(A[i].level.niv, nivel) == 0)
                 if (A[i].level.gra == grado)
                     if (dsalon == salon)
-                    {
-                        sumP = 0.0;
-                        promg = 0.0;
-
-                        // Cálculo del promedio general (promg)
-                        for (j = 0; j < 7; j++)
-                            sumP += A[i].level.cal[j].prom;
-                        promg = sumP / 7;
-
-			if (promg > max_prom)
-                        {
-                            max_prom = promg;
-                            max_index = i;
-                        }
-                    }
+                        conteo++;
         }
 
-        printf("\nEl alumno con el mayor promedio del nivel %s, grado %d y salón %d, es %s, con promedio general %.2f\n", nivel, grado, salon, A[max_index].name, max_prom);
+        if (conteo == 0)
+            printf("\nNingún dato coincide con las especificaciones antes dadas.\n");
+        else
+        {
+	    max_prom = 0.0;
+	    max_index = 0;
+
+            for (i = 0; i < T; i++)
+            {
+                // Conversión del valor del salón en enteros.
+                dsalon = atoi(A[i].level.sal);
+            
+                if (strcmp(A[i].level.niv, nivel) == 0)
+                    if (A[i].level.gra == grado)
+                        if (dsalon == salon)
+                        {
+                            sumP = 0.0;
+                            promg = 0.0;
+
+                            // Cálculo del promedio general (promg)
+                            for (j = 0; j < 7; j++)
+                                sumP += A[i].level.cal[j].prom;
+                            promg = sumP / 7;
+
+			    if (promg > max_prom)
+                            {
+                                max_prom = promg;
+                                max_index = i;
+                            }
+                        }
+            }
+
+            printf("\nEl alumno con el mayor promedio del nivel %s, grado %d y salón %d, es %s, con promedio general %.2f\n", nivel, grado, salon, A[max_index].name, max_prom);
+        }
 
         do
         {
