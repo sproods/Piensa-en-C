@@ -169,7 +169,7 @@ void Lectura(Alumno A[], int T)
     }
 }
 
-/* Declaración de la función Ordena. Función que ordena de manera craciete en función de la matrícula de los alumnos. */
+/* Declaración de la función Ordena. Función que ordena de manera creciente en función de la matrícula de los alumnos. */
 void Ordena(Alumno A[], int T)
 {
     int i, j, min, x;
@@ -213,6 +213,8 @@ void Promedio_alumno(Alumno A[], int T)
     int i, j, mat;
     float sum, prom;
 
+    printf("\nPROMEDIO DE UN ALUMNO DADA SU MATRÍCULA\n");
+
     printf("\nDigite el número de la matrícula del alumno: ");
     scanf("%d", &mat);
     fflush(stdin);
@@ -252,6 +254,8 @@ void Lista_promedios(Alumno A[], int T)
     int i, j, grado, salon, elec, dsalon, conteo;
     float promg, sumP;
     char nivel[15];
+
+    printf("\nPROMEDIO GENERAL DE LOS ALUMNOS DE UN MISMO NIVEL, GRADO Y SALON\n");
 
     do
     {
@@ -380,6 +384,8 @@ void Mayor_promedio(Alumno A[], int T)
     int i, j, grado, salon, elec, dsalon, max_index, conteo;
     float promg, sumP, max_prom;
     char nivel[15];
+
+    printf("\nALUMNO CON EL MAYOR PROMEDIO DE UN NIVEL, GRADO Y SALON ESPECÍFICOS\n");
 
     do
     {
