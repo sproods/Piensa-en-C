@@ -300,13 +300,16 @@ void Lista_promedios(Alumno A[], int T)
                                     sumP += A[i].level.cal[j].prom;
                                 promg = sumP / 7;
 
-                                printf("\nLos datos del alumno del nivel %s, grado %s y salón, son:\n", nivel, grado, salon);
+                                printf("\nLos datos del alumno del nivel %s, grado %d y salón %d, son:\n", nivel, grado, salon);
 
                                 printf("\n\tMatrícula: %d\n\tNombre: %s\n\tPromedio General: %.2f\n", A[i].matri, A[i].name, promg);
                             }
                 }
             else
             {
+
+                printf("\nLos datos de los alumnos del nivel %s, grado %d y salón %d, son:\n", nivel, grado, salon);
+
                 for (i = 0; i < T; i++)
                 {
                     // Conversión del valor del salón en enteros.
@@ -323,8 +326,6 @@ void Lista_promedios(Alumno A[], int T)
                                 for (j = 0; j < 7; j++)
                                     sumP += A[i].level.cal[j].prom;
                                 promg = sumP / 7;
-
-                                printf("\nLos datos del alumno del nivel %s, grado %s y salón, son:\n", nivel, grado, salon);
 
                                 printf("\n\tMatrícula: %d\n\tNombre: %s\n\tPromedio General: %.2f\n", A[i].matri, A[i].name, promg);
                             }
