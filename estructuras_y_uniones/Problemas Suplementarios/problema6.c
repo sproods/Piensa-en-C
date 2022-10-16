@@ -236,7 +236,7 @@ void Promedio_alumno(Alumno A[], int T)
  * los alumnos coincidan con el nivel de estudios, el grado y el salón digitados por el usuario. */
 void Lista_promedios(Alumno A[], int T)
 {
-    int i, j, grado, salon, elec, dsalon;
+    int i, j, grado, salon, elec, dsalon, conteo;
     float promg, sumP;
     char nivel[15];
 
@@ -263,28 +263,73 @@ void Lista_promedios(Alumno A[], int T)
     scanf("%d", &salon);
     fflush(stdin);
 
+
     while (elec)
     {        
+        conteo = 0;
+
         for (i = 0; i < T; i++)
         {
             // Conversión del valor del salón en enteros.
             dsalon = atoi(A[i].level.sal);
-            
+
             if (strcmp(A[i].level.niv, nivel) == 0)
                 if (A[i].level.gra == grado)
                     if (dsalon == salon)
-                    {
-                        sumP = 0.0;
-                        promg = 0.0;
-
-                        // Cálculo del promedio general (promg)
-                        for (j = 0; j < 7; j++)
-                            sumP += A[i].level.cal[j].prom;
-                        promg = sumP / 7;
-
-                        printf("\n\tMatrícula: %d\n\tNombre: %s\n\tPromedio General: %.2f\n", A[i].matri, A[i].name, promg);
-                    }
+                        conteo++;
         }
+
+        if (conteo == 0)
+            printf("\nNo hay alumnos que coincidan con estas especificaciones.\n");
+        else
+            if (conteo == 1)
+                for (i = 0; i < T; i++)
+                {
+                    // Conversión del valor del salón en enteros.
+                    dsalon = atoi(A[i].level.sal);
+
+                    if (strcmp(A[i].level.niv, nivel) == 0)
+                        if (A[i].level.gra == grado)
+                            if (dsalon == salon)
+                            {
+                                sumP = 0.0;
+                                promg = 0.0;
+
+                                // Cálculo del promedio general (promg)
+                                for (j = 0; j < 7; j++)
+                                    sumP += A[i].level.cal[j].prom;
+                                promg = sumP / 7;
+
+                                printf("\nLos datos del alumno del nivel %s, grado %s y salón, son:\n", nivel, grado, salon);
+
+                                printf("\n\tMatrícula: %d\n\tNombre: %s\n\tPromedio General: %.2f\n", A[i].matri, A[i].name, promg);
+                            }
+                }
+            else
+            {
+                for (i = 0; i < T; i++)
+                {
+                    // Conversión del valor del salón en enteros.
+                    dsalon = atoi(A[i].level.sal);
+
+                    if (strcmp(A[i].level.niv, nivel) == 0)
+                        if (A[i].level.gra == grado)
+                            if (dsalon == salon)
+                            {
+                                sumP = 0.0;
+                                promg = 0.0;
+
+                                // Cálculo del promedio general (promg)
+                                for (j = 0; j < 7; j++)
+                                    sumP += A[i].level.cal[j].prom;
+                                promg = sumP / 7;
+
+                                printf("\nLos datos del alumno del nivel %s, grado %s y salón, son:\n", nivel, grado, salon);
+
+                                printf("\n\tMatrícula: %d\n\tNombre: %s\n\tPromedio General: %.2f\n", A[i].matri, A[i].name, promg);
+                            }
+                }
+            }
 
         do
         {
