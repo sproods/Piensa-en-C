@@ -77,15 +77,28 @@ void main(void)
 /* Declaración de la función Lectura. */
 void Lectura(Alumno A[], int T)
 {
-    int i, j, elec;
+    int i, j, k, elec, veriMat;
 
     for (i = 0; i < T; i++)
     {
         printf("\nDatos del alumno %d\n", i + 1);
 
-        printf("\nMatrícula del alumno: ");
-        scanf("%d", &A[i].matri);
-        fflush(stdin);
+        do
+        {
+            printf("\nMatrícula del alumno: ");
+            scanf("%d", &A[i].matri);
+            fflush(stdin);
+
+            veriMat = 0;
+
+            for (k = 0; k < i; k++)
+                if (A[i].matri == A[k].matri)
+                    veriMat++;
+
+            if (veriMat > 0)
+                printf("\nYa hay un alumno con este número de matrícula. Por favor, digite otro número de matrícula.");
+        }
+        while (veriMat > 0);
 
         printf("Nombre y apellido: ");
         gets(A[i].name);
