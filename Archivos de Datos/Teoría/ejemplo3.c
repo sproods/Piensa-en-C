@@ -12,7 +12,7 @@ void main(void)
     if((ar = fopen("arc.txt", "w")) != NULL)
     /* Se abre el archivo para escritura. En la misma instrucción se verifica si se pudo abrir. */
     {
-        printf("\n¿Desea digitar una cadena de caracteres? Si-2 No-0: ");
+        printf("\n¿Desea digitar una cadena de caracteres? Si-1 No-0: ");
         scanf("%d", &res);
 
         while (res)
@@ -21,7 +21,7 @@ void main(void)
             printf("Digite la cadena: ");
             gets(cad);
             fputs(cad, ar);         /* Observa la forma como se escribe la cadena en el archivo. */
-            printf("\n¿Desea ingresar otra cadena de caracteres? Si-2 No-0: ");
+            printf("\n¿Desea ingresar otra cadena de caracteres? Si-1 No-0: ");
             scanf("%d", &res);
 
             if (res)

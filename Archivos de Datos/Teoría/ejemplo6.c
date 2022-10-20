@@ -22,7 +22,7 @@ void main(void)
 
             for (j = 0; j < 5; j++)
             {
-                fscanf(ar, "%f", &cal); /* se leen las cinco calificaciones del alumno. */
+                fscanf(ar, "%f", &cal); /* Se leen las cinco calificaciones del alumno. */
                 pro += cal;
             }
 
