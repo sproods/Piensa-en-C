@@ -22,8 +22,8 @@ void main(void)
         {
             fflush(stdin);
             printf("\nDigite la frase: ");
-            gets(string);
-            fputs(string, arx);
+            gets(string);           // Lee la cadena.
+            fputs(string, arx);     // Imprime la cadena en el archivo.
 
             printf("\n¿Desea digitar otra frase? (Sí-1   No-0): ");
             scanf("%d", &op);
