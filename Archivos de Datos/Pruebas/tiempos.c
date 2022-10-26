@@ -19,7 +19,7 @@ void main(void)
         {
             printf("\nDigite cuánto tiempo ha meditado el día %d: ", i + 1);
             scanf("%f", &time);
-            fprintf(arxiv, "\n%.2f", time);
+            fprintf(arxiv, "\n%f", time);
         }
 
         fclose(arxiv);
