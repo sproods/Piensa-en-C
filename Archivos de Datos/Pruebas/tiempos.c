@@ -4,7 +4,7 @@
 
 void main(void)
 {
-    int i, days;
+    int i, j, days;
     float time;
     FILE *arxiv;
 
@@ -17,9 +17,9 @@ void main(void)
 
         for (i = 0; i < days; i++)
         {
-            printf("\nDigite el tiempo del día %d: ", i + 1);
+            printf("\nDigite cuánto tiempo ha meditado el día %d: ", i + 1);
             scanf("%f", &time);
-            fprintf(arxiv, "%.2f", time);
+            fprintf(arxiv, "\n%.2f", time);
         }
 
         fclose(arxiv);
