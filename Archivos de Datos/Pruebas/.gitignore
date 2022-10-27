@@ -4,6 +4,7 @@ read_charPrueba.exe
 read_stringPrueba.exe
 tiempos.exe
 suma_tiempos.exe
+promedio_tiempos.exe
 
 
 frases.txt
