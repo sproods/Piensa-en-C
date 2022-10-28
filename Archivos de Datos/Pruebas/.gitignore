@@ -5,7 +5,11 @@ read_stringPrueba.exe
 tiempos.exe
 suma_tiempos.exe
 promedio_tiempos.exe
+paciente.exe
 
 
 frases.txt
 meditacion.txt
+
+
+pacientes.dat
