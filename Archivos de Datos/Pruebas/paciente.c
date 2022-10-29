@@ -7,8 +7,8 @@ typedef struct          // Declaración de la estructura paciente.
 {
     int cod;            // Código del paciente.
     char nom[20];       // Nombre del paciente.
-    char sex[15];       // Sexo del paciente.
-    char est[15];       // Estado civil del paciente.
+    char sex[20];       // Sexo del paciente.
+    char est[20];       // Estado civil del paciente.
     float pes;          // Peso del paciente.
     float tall;         // Talla del paciente.
 } paciente;

@@ -6,8 +6,8 @@ typedef struct          // Declaración de la estructura paciente.
 {
     int cod;
     char nom[20];
-    char sex[15];
-    char est[15];
+    char sex[20];
+    char est[20];
     float pes;
     float tall;
 } paciente;
@@ -35,12 +35,12 @@ void Read(FILE *archivo)        // Función que lee y muestra en pantalla los da
 
     while (!feof(archivo))
     {
-        printf("\nCódigo: %d\n", datos_paciente.cod);
-        puts(datos_paciente.nom);
-        puts(datos_paciente.sex);
-        puts(datos_paciente.est);
-        printf("Estatura: %.2f", datos_paciente.tall);
-        printf("\nPeso: %.2f\n", datos_paciente.pes);
+        printf("\nCódigo: %d", datos_paciente.cod);
+        printf("\n\tNombre: \t%s", datos_paciente.nom);
+        printf("\n\tSexo: \t\t%s", datos_paciente.sex);
+        printf("\n\tEstado civil: \t%s", datos_paciente.est);
+        printf("\n\tEstatura: \t%.2f", datos_paciente.tall);
+        printf("\n\tPeso: \t\t%.2f\n", datos_paciente.pes);
 
         fread(&datos_paciente, sizeof(paciente), 1, archivo);
     }
