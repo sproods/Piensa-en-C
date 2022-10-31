@@ -59,9 +59,38 @@ void main(void)
     }
 }
 
-void Write(FILE *arc)
+void Write(FILE *arc)           // Función que escribe en un archivo un registro.
 {
     text lines;
+    int r;
+
+    if ((arc = fopen("caja_textos.dat", "w")) != NULL);
+    {
+        r = 1;
+
+        while(r)
+        {
+            printf("\nDigite la frase:\n");
+            gets(lines.frase);
+            fflush(stdin),
+
+            printf("\nDigite el autor de la frase:\n");
+            gets(lines.author);
+            fflush(stdin);
+
+            printf("\nDigite el año en que %s pronunció dicha frase:\n", lines.author);
+            scanf("%d", &lines.year);
+            fflush(stdin);
+
+            fwrite(&lines, sizeof(text), 1, arc);
+
+            printf("\n¿Desea ingresar más frases? (Sí- 1   No- 0)");
+            scanf("\n%d", &r);
+            fflush(stdin);
+        }
+    }
+
+    printf("\n¡Gracias por dejar las mejores frases digitadas en una archivo .dat!\n");
 }
 
 void Read(FILE *arc)
