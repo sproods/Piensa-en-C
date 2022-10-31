@@ -64,7 +64,7 @@ void Write(FILE *arc)           // Función que escribe en un archivo un registr
     text lines;
     int r;
 
-    if ((arc = fopen("caja_textos.dat", "w")) != NULL);
+    if ((arc = fopen("caja_textos.dat", "w")) != NULL)
     {
         r = 1;
 
@@ -89,13 +89,40 @@ void Write(FILE *arc)           // Función que escribe en un archivo un registr
             fflush(stdin);
         }
     }
+    else
+        printf("\nNo se ha podido abrir el archivo.\n");
+
+    fclose(arc);
 
     printf("\n¡Gracias por dejar las mejores frases digitadas en una archivo .dat!\n");
 }
 
-void Read(FILE *arc)
+void Read(FILE *arc)            // Función que lee los datos de un archivo de acceso directo.
 {
     text lines;
+    int i = 0;
+
+    if ((arc = fopen("caja_textos.dat", "r")) != NULL)
+    {
+        fread(&lines, sizeof(text), 1, arc);
+
+        while(!feof(arc))
+        {
+            printf("\nFRASE %d:\n\t<<%s>>", i + 1, lines.frase);
+            printf("\n\n\t\tAUTOR: %s", lines.author);
+            printf("\n\t\t%7d", lines.year);
+
+            i++;
+
+            fread(&lines, sizeof(text), 1, arc);
+        }
+
+        printf("\n\nÉstas son todas las frases hasta el momento.\n¡Gracias por su atención!\n");
+    }
+    else
+        printf("\nNo se ha podido abrir el archivo.\n");
+
+    fclose(arc);
 }
 
 void modFrase(FILE *arc)
