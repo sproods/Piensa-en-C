@@ -128,6 +128,26 @@ void Read(FILE *arc)            // Función que lee los datos de un archivo de a
 void modFrase(FILE *arc)
 {
     text lines;
+    int d;
+
+    if ((arc = fopen("caja_textos.dat", "r+")) != NULL)
+    {
+        printf("\nDigite el número del registro que desea modificar: ");
+        scanf("%d", &d);
+        fflush(stdin);
+
+        fseek(arc, (d - 1) * sizeof(text), 0);      // Nos posicionamos en el archivo correspondiente.
+
+        fread(&lines, sizeof(text), 1, arc);        // Leemos el archivo correspondiente.
+
+        printf("\nDigite la frase, que desea modificar, del autor %s:\n", lines.author);
+        gets(lines.frase);
+        fflush(stdin);
+
+        fseek(arc, (d - 1) * sizeof(text), 0);      // Nos volvemos a posicionar en el lugar correcto.
+
+        fwrite(&lines, sizeof(text), 1, arc);
+    }
 }
 
 void modAuthor(FILE *arc)
