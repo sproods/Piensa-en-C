@@ -148,6 +148,11 @@ void modFrase(FILE *arc)
 
         fwrite(&lines, sizeof(text), 1, arc);
     }
+
+    else
+        printf("\nEl archivo no se ha podido abrir.\n");
+
+    fclose(arc);
 }
 
 void modAuthor(FILE *arc)
