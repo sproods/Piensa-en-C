@@ -207,4 +207,8 @@ void modYear(FILE *arc)
 
         fwrite(&lines, sizeof(text), 1, arc);
     }
+    else
+        printf("\nEl archivo no puese ser abierto.\n");
+
+    fclose(arc);
 }
