@@ -199,8 +199,8 @@ void modYear(FILE *arc)
 
         fread(&lines, sizeof(text), 1, arc);
 
-        printf("\nDigite el año correcto cuando se pronunció la frase: %s", lines.frase);
-        scanf("\n%d", lines.year);
+        printf("\nDigite el año correcto cuando se pronunció la frase: %s, en el año %d\n", lines.frase, lines.year);
+        scanf("%d", &lines.year);
         fflush(stdin);
 
         fseek(arc, (ubi - 1) * sizeof(text), 0);
