@@ -20,7 +20,7 @@ void main(void)
     FILE *arxiv;
     int op1, op2;
 
-    printf("\nEscoja una de las siguientes opcionnes:\n");
+    printf("\nEscoja una de las siguientes opciones:\n");
     do
     {
         printf("\t1. Escribir un archivo   2. Leer un archivo   3. Modificar un archivo\n");
