@@ -178,9 +178,33 @@ void modAuthor(FILE *arc)
 
         fwrite(&lines, sizeof(text), 1, arc);
     }
+    else
+        printf("\nEl archivo no pudo ser abierto.\n");
+
+    fclose(arc);
 }
 
 void modYear(FILE *arc)
 {
     text lines;
+    int ubi;
+
+    if ((arc = fopen("caja_textos.dat", "r+")) != NULL)
+    {
+        printf("\nDigite el número de registro que desea modificar: ");
+        scanf("%d", &ubi);
+        fflush(stdin);
+
+        fseek(arc, (ubi - 1) * sizeof(text), 0);
+
+        fread(&lines, sizeof(text), 1, arc);
+
+        printf("\nDigite el año correcto cuando se pronunció la frase: %s", lines.frase);
+        scanf("\n%d", lines.year);
+        fflush(stdin);
+
+        fseek(arc, (ubi - 1) * sizeof(text), 0);
+
+        fwrite(&lines, sizeof(text), 1, arc);
+    }
 }
