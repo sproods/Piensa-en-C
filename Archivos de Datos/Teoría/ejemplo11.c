@@ -42,7 +42,7 @@ void incrementa(FILE *ap)
     t = sizeof(empleado);
     /* La función sizeof se utiliza para conocer el tamaño de la estructura empleado. */
 
-    fread(&emple, sizeof(empleado), i, ap);         /* Se lee el primer registro del archivo. */
+    fread(&emple, sizeof(empleado), 1, ap);         /* Se lee el primer registro del archivo. */
 
     while (!feof(ap))
     {
