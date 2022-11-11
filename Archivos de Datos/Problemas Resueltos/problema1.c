@@ -12,9 +12,11 @@ void main(void)
     /* Se abre el archivo con la opción para incorporar caracteres. */
     if (ar != NULL)
     {
+        printf("\nDigite la cadena de texto de su preferencia:\n");
+
         while ((p1 = getchar()) != '\n')
             fputc(p1, ar);
-
+        fputc('\n', ar);
         fclose(ar);
     }
     else
