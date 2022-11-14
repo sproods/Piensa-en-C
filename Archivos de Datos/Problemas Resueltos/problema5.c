@@ -3,7 +3,7 @@
 
 /* Suma reales.
  * El programa lee cadenas de caracteres de un archivo, detecta aquellas que
- * que comienzan con números, los soma y calcula el promedio de los mismos. */
+ * que comienzan con números, los suma y calcula el promedio de los mismos. */
 
 void sumypro(FILE *);           /* Prototipo de función. */
 
