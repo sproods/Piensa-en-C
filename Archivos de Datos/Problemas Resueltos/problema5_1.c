@@ -2,6 +2,8 @@
 
 /* El programa escribe en un archivo los datos de las matrículas de N alumnos. */
 
+#define MES 5
+
 void Escribe(FILE *, int);
 
 void main(void)
@@ -25,6 +27,7 @@ void main(void)
 void Escribe(FILE *arc, int cant)
 {
     int i, j;
+    float nota;
     char name[50];
 
     fprintf(arc, "%d", cant);
@@ -36,5 +39,13 @@ void Escribe(FILE *arc, int cant)
         fflush(stdin);
         fputc('\n', arc);
         fputs(name, arc);
+
+        for (j = 0; j < MES; j++)
+        {
+            printf("\tDigite la nota %d del alumno %s: ", j + 1, name);
+            scanf("%f", &nota);
+            fflush(stdin);
+            fprintf(arc, "\n%.2f", nota);
+        }
     }
 }
