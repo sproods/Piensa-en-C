@@ -53,7 +53,7 @@ void mezcla(FILE *ar, FILE *ar1, FILE *ar2)
         {
             fprintf(ar2, "%d\t", mat);
             for (i = 0; i < 3; i++)
-                fprintf(ar2, "%f\t", ca[i]);
+                fprintf(ar2, "%.1f\t", ca[i]);
             fputs("\n", ar2);
             b = 1;
         }
@@ -61,7 +61,7 @@ void mezcla(FILE *ar, FILE *ar1, FILE *ar2)
         {
             fprintf(ar2, "%d\t", mat1);
             for (i = 0; i < 3; i++)
-                fprintf(ar2, "%f\t", ca1[i]);
+                fprintf(ar2, "%.1f\t", ca1[i]);
             fputs("\n", ar2);
             b1 = 1;
         }
@@ -71,7 +71,7 @@ void mezcla(FILE *ar, FILE *ar1, FILE *ar2)
     {
         fprintf(ar2, "%d\t", mat);
         for (i = 0; i < 3; i++)
-            fprintf(ar2, "%f\t", ca[i]);
+            fprintf(ar2, "%.1f\t", ca[i]);
         fputs("\n", ar2);
 
         while (!feof(ar))
@@ -81,7 +81,7 @@ void mezcla(FILE *ar, FILE *ar1, FILE *ar2)
             for (i = 0; i < 3; i++)
             {
                 fscanf(ar, "%f", &cal);
-                fprintf(ar2, "%f\t", cal);
+                fprintf(ar2, "%.1f\t", cal);
             }
             fputs("\n", ar2);
         }
@@ -91,7 +91,7 @@ void mezcla(FILE *ar, FILE *ar1, FILE *ar2)
     {
         fprintf(ar2, "%d\t", mat1);
         for (i = 0; i < 3; i++)
-            fprintf(ar2, "%f\t", ca1[i]);
+            fprintf(ar2, "%.1f\t", ca1[i]);
         fputs("\n", ar2);
 
         while (!feof(ar1))
@@ -101,7 +101,7 @@ void mezcla(FILE *ar, FILE *ar1, FILE *ar2)
             for (i = 0; i < 3; i++)
             {
                 fscanf(ar1, "%f", &cal);
-                fprintf(ar2, "%f\t", cal);
+                fprintf(ar2, "%.1f\t", cal);
             }
             fputs("\n", ar2);
         }
