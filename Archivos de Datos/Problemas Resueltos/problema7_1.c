@@ -7,6 +7,7 @@
 
 void escribe(FILE *);
 void escribeEnArchivo(FILE *, int [], float [][NOTAS], int);
+void ordena(int [], float [][NOTAS], int);
 
 void main(void)
 {
@@ -43,6 +44,7 @@ void escribe(FILE *arc)
         }
     }
 
+    ordena(mat, nota, n);
     escribeEnArchivo(arc, mat, nota, n);
 }
 
@@ -59,5 +61,37 @@ void escribeEnArchivo(FILE *arc, int A[NUM], float B[NUM][NOTAS], int N)
 
         if (i < N - 1)
             fputs("\n", arc);
+    }
+}
+
+void ordena(int A[NUM], float B[NUM][NOTAS], int N)
+{
+    int i, j, min, index, aux;
+    float auxf;
+
+    for (i = 0; i < N - 1; i++)
+    {
+        min = A[i];
+        index = i;
+
+        for (j = i + 1; j < N; j++)
+        {
+            if (min > A[j])
+            {
+                min = A[j];
+                index = j;
+            }
+        }
+
+        aux = A[i];
+        A[i] = A[index];
+        A[index] = aux;
+
+        for (j = 0; j < NOTAS; j++)
+        {
+            auxf = B[i][j];
+            B[i][j] = B[index][j];
+            B[index][j] = auxf;
+        }
     }
 }
