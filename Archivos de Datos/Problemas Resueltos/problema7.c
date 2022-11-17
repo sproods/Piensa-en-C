@@ -13,7 +13,7 @@ void main(void)
     ar1 = fopen("arc10.dat", "r");
     ar2 = fopen("arc11.dat", "w");
 
-    if (((ar != NULL)) && (ar1 != NULL) && (ar2 != NULL))
+    if ((ar != NULL) && (ar1 != NULL) && (ar2 != NULL))
     {
         mezcla(ar, ar1, ar2);
         fclose(ar);
