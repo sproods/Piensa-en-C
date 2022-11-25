@@ -34,16 +34,16 @@ void main(void)
 
         for (i = 0; i < n_Act; i++)
         {
-            fgets(actividad, N, arxiv);          // Obtenemos y almacenamos el nombre de cada una de las actividades.
+            fscanf(arxiv, "%s", &actividad);        // Obtenemos y almacenamos el nombre de cada una de las actividades.
             strcpy(activity[i], actividad);
             fflush(stdin);
-            // puts(activity[i]);                      // Imprimimos en pantalla el nombre de las actividades.
+            // puts(activity[i]);                   // Imprimimos en pantalla el nombre de las actividades.
 
             for (j = 0; j < n_Time; j++)
             {
-                fscanf(arxiv, "%f", &tiempo[i][j]);    // Obtenemos el valor de cada uno de los tiempos escritos en el archivo.
+                fscanf(arxiv, "%f", &tiempo[i][j]); // Obtenemos el valor de cada uno de los tiempos escritos en el archivo.
                 fflush(stdin);
-                // printf("\n%.2f", tiempo[i][j]);        // Escribimos en pantalla el valor de cada uno de los tiempos.
+                // printf("\n%.2f", tiempo[i][j]);  // Escribimos en pantalla el valor de cada uno de los tiempos.
             }
         }
 
@@ -52,8 +52,9 @@ void main(void)
             printf("\n%s", activity[i]);
 
             for (j = 0; j < n_Time; j++)
-                printf("\n%.2f", tiempo[i][j]);
+                printf("\n\t%.2f", tiempo[i][j]);
         }
+        putchar('\n');
 
         fclose(arxiv);
     }
