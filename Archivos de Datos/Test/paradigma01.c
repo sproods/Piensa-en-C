@@ -43,7 +43,7 @@ void write(FILE *arc)
     while (true)
     {
         i++;
-        printf("\nGuión %d\n", i + 1);
+        printf("\nGuión %d\n", i);
 
         printf("\nTítulo del guión:\n");
         gets(my_screenplay.title);
@@ -83,13 +83,13 @@ void write(FILE *arc)
         fflush(stdin);
 
         /* A continuación, se escriben todos estos datos utilizando la función fwrite. */
-        fwrite(&my_screenplay, sizeof(Screenplay), 2, arc);
+        fwrite(&my_screenplay, sizeof(Screenplay), 1, arc);
 
         printf("\n¿Desea continuar escribiendo el paradigma de otro guión? (sí - 1   no - 0): ");
         scanf("%d", &res);
         fflush(stdin);
 
-        if (!res)
+        if (res == 0)
             break;
     }
 }
