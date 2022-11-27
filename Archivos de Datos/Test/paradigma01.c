@@ -65,7 +65,7 @@ void write(FILE *arc)
         printf("\nPrimer \"Plot Point\":\n");
         gets(my_screenplay.plotpoint1);
 
-        printf("\nConfontración:\n");
+        printf("\nConfrontación:\n");
         gets(my_screenplay.conf);
 
         printf("\nNúmero de páginas de la confrontación: ");

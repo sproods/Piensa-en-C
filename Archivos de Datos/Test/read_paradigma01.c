@@ -1,6 +1,7 @@
 // El programa lee el contenido almacenado en el archivo .dat
 
 #include <stdio.h>
+#include <stdbool.h>
 
 typedef struct                  // variable de tipo estructura
 {
