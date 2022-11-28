@@ -5,16 +5,17 @@
 
 typedef struct                  // variable de tipo estructura
 {
+    int number;                 // número de guión
     char title[50];             // título del guión
     int n_pages;                // número de páginas del guión
-    char plot[1500];            // tema del [guión
-    char plant[1000];           // planteamiento (acto I)
+    char plot[250];            // tema del [guión
+    char plant[250];           // planteamiento (acto I)
     int plant_npages;           // número de páginas del planteamiento
-    char plotpoint1[1000];      // primer plot point
-    char conf[1000];            // confrontación (acto II)
+    char plotpoint1[250];      // primer plot point
+    char conf[250];            // confrontación (acto II)
     int conf_npages;            // número de páginas de la confrontación
-    char plotpoint2[1000];      // segungo plot point
-    char reso[1000];          // resolución (acto III)
+    char plotpoint2[250];      // segungo plot point
+    char reso[250];            // resolución (acto III)
     int res_npages;             // número de páginas de la resolución
 } Screenplay;
 
@@ -35,7 +36,6 @@ void main(void)
 
 void read(FILE *arc)
 {
-    int i = 0;
     Screenplay my_screenplay;
 
     /* se efectúa una primera lectura de la estructura usando la función fread */
@@ -43,16 +43,16 @@ void read(FILE *arc)
 
     while (!feof(arc))
     {
-        printf("\nTítulo del guión %d:\n\t%s\n que tiene %d páginas.", i + 1, my_screenplay.title, my_screenplay.n_pages);
-        printf("\nTema del guión:\n%s", my_screenplay.plot);
-        printf("\nPlanteamiento:\n%s\ncon %d páginas.", my_screenplay.plant, my_screenplay.plant_npages);
-        printf("\nPrimer Plot Point:\n%s", my_screenplay.plotpoint1);
-        printf("\nConfrontación:\n%s\ncon %d páginas.", my_screenplay.conf, my_screenplay.conf_npages);
-        printf("\nSegundo Plot Point:\n%s", my_screenplay.plotpoint2);
-        printf("\nResolución:\n%s\ncon %d páginas.", my_screenplay.reso, my_screenplay.res_npages);
+        printf("\nGuión número %d", my_screenplay.number);
+        printf("\nTítulo del guión %d:\n\t%s\n\tque tiene %d páginas.\n", my_screenplay.number, my_screenplay.title, my_screenplay.n_pages);
+        printf("\nTema del guión:\n\t%s\n", my_screenplay.plot);
+        printf("\nPlanteamiento:\n\t%s\n\tcon %d páginas.\n", my_screenplay.plant, my_screenplay.plant_npages);
+        printf("\nPrimer Plot Point:\n\t%s\n", my_screenplay.plotpoint1);
+        printf("\nConfrontación:\n\t%s\n\tcon %d páginas.\n", my_screenplay.conf, my_screenplay.conf_npages);
+        printf("\nSegundo Plot Point:\n\t%s\n", my_screenplay.plotpoint2);
+        printf("\nResolución:\n\t%s\n\tcon %d páginas.\n", my_screenplay.reso, my_screenplay.res_npages);
 
         /* se vuelve a leer otra estructura hasta el final del archivo */
         fread(&my_screenplay, sizeof(Screenplay), 1, arc);
-        i++;
     }
 }
