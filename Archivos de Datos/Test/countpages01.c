@@ -55,6 +55,7 @@ void Countpages(FILE *arc)
         printf("\nEl total de páginas real es: %d", total);
 
         // asignamos los nuevos valores a cada número de páginas
+        miguion.n_pages = total;
         miguion.plant_npages = total * 0.25;
         miguion.conf_npages = total * 0.5;
         miguion.res_npages = total * 0.25;
