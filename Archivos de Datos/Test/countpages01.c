@@ -56,9 +56,26 @@ void Countpages(FILE *arc)
 
         // asignamos los nuevos valores a cada número de páginas
         miguion.n_pages = total;
-        miguion.plant_npages = total * 0.25;
-        miguion.conf_npages = total * 0.5;
-        miguion.res_npages = total * 0.25;
+        if (total % 2 == 0)
+        {
+            miguion.conf_npages = total * 0.5;
+            if ((total / 2) % 2 == 0)
+            {
+                miguion.plant_npages = total * 0.25;
+                miguion.res_npages = total * 0.25;
+            }
+            else
+            {
+                miguion.plant_npages = (total * 0.25) + 1;
+                miguion.res_npages = (total * 0.25);
+            }
+        }
+        else
+        {
+            miguion.plant_npages = total * 0.25;
+            miguion.conf_npages = (total * 0.5) + 1;
+            miguion.res_npages = total * 0.25;
+        }
 
         printf("\nLos nuevos valores de páginas de cada parte de la línea argumental son:");
         printf("\n\tPlanteamiento: %d páginas\n\tConfrontación: %d páginas\n\tResolución: %d páginas\n", miguion.plant_npages, miguion.conf_npages, miguion.res_npages);
