@@ -24,26 +24,41 @@ void main(void)
 
 void correction(FILE *arc)
 {
-    int lines = 0, i;
-    char dance[250], strings[MAX][250];
-
-    while (!feof(arc))
-    {
-        fgets(dance, 250, arc);
-        lines++;
-    }
-    
-    rewind(arc);
-
-    while(!feof(arc))
-    {
-        for (i = lines - 1; i >= 0; i--)
-        {
-            fgets(dance, 250, arc);
-            strcpy(strings[i], dance);
-        }
-    }
-
-    for (i = 0; i < lines; i++)
-        printf("%s\n", strings[i]);
+	char cad[250];
+	int i, fila = 0, res = 0;
+	
+	while (!feof(arc))
+	{
+		fila++;
+		fgets(cad, 250, arc);
+		
+		i = 0;
+		while (cad[i] != '\n')
+		{
+			if ((cad[i] == 'n') && (cad[i + 1] == 'p'))
+			{
+				res++;
+				printf("\nEn la línea %d, la letra \'n\' en la posición %d, debe ser \'m\'\n", fila, i + 1);
+			}
+			
+			if ((cad[i] == 'n') && (cad[i + 1] == 'b'))
+			{
+				res++;
+				printf("\nEn la línea %d, la letra \'n\' en la posición %d, debe ser \'m\'\n", fila, i + 1);
+			}
+			
+			if ((cad[i] == 'm') && (cad[i + 1] == 'v'))
+			{
+				res++;
+				printf("\nEn la línea %d, la letra \'n\' en la posición %d. debe ser \'m\'\n", fila, i + 1);
+			}
+			
+			i++;
+		}
+	}
+	
+	if (res)
+		printf("\nHubieron %d errores ortográficos en el archivo.\nRevisión terminada.\n", res);
+	else
+		printf("\nNo hubo ningún error ortográfico en el archivo.\nRevisión terminada\n");
 }
