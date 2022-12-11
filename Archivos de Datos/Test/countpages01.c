@@ -51,6 +51,8 @@ void Countpages(FILE *arc)
         i = ftell(arc) / tam;       // determinamos el tamaño de cada bloque debajo del apuntador
         printf("\nEl tamaño de los bloques debajo del apuntador actual es: %d", i);
 
+        printf("\n\tEl valor de este ftell es %d\n", ftell(arc));           // vemos el valor de ftell, si podemos.
+
         total = miguion.plant_npages + miguion.conf_npages + miguion.res_npages;
         printf("\nEl total de páginas real es: %d", total);
 
