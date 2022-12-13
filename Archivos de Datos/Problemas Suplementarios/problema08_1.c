@@ -28,14 +28,14 @@ void write(FILE *ar)
 		printf("Digite la matrícula del alumno: ");
 		scanf("%d", &mat);
 		fflush(stdin);
-		fprintf(ar, "%d\t", mat);
+		fprintf(ar, "%d", mat);
 		
 		for (i = 0; i < 3; i++)
 		{
 			printf("\nDigite la calificación %d: ", i + 1);
 			scanf("%f", &cal);
 			fflush(stdin);
-			fprintf(ar, "%.2f\t", cal);
+			fprintf(ar, "\t%.2f", cal);
 		}
 		
 		printf("\nDigite cero para dejar de registrar o culquier tecla para continuar con otras notas: ");
