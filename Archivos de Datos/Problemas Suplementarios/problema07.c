@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#define MAX 100
+
 typedef struct
 {
     int mat;
@@ -28,7 +30,7 @@ void main(void)
 
 void ordena(FILE *arc)
 {
-    int i, tam, may_mat = 0, index = 0;
+    int i, tam, may_mat = 0, index = 0, count_structures = 0, arr_mat[MAX], I;
     Datos datos_alumno;
 
     tam = sizeof(Datos);        // definimos el tamaño de cada bloque de estructura
@@ -36,19 +38,32 @@ void ordena(FILE *arc)
     fseek(arc, 0, 0);           // nos posicionamos al inicio del archivo
     fread(&datos_alumno, sizeof(Datos), 1, arc);
 
+    // realizamos un conteo de la cantidad de estructuras que hay en el archivo
     while (!feof(arc))
     {
         i = ftell(arc) / tam;
 
-        if (datos_alumno.mat > may_mat)
-        {
-            may_mat = datos_alumno.mat;
-            index = i;
-        }
+        if (datos_alumno.mat > 0)
+            count_structures++;
 
         fseek(arc, i * sizeof(Datos), 0);
         fread(&datos_alumno, sizeof(Datos), 1, arc);
     }
 
-    printf("\nLa matrícula mayor es %d ubicada en el índice %d\n", may_mat, index);
+    // almacenamos las matrículas en un arreglo unidimensional
+    rewind(arc);
+    fread(&datos_alumno, sizeof(Datos), 1, arc);
+    
+    for (I = 0; I < count_structures; I++)
+    {
+        i = ftell(arc) / tam;
+        arr_mat[I] = datos_alumno.mat;
+        
+        fseek(arc, i * sizeof(Datos), 0);
+        fread(&datos_alumno, sizeof(Datos), 1, arc);
+    }
+    
+    printf("Las matrículas son:\n");
+    for (I = 0; I < count_structures; I++)
+        printf("%d\n", arr_mat[I]);
 }
