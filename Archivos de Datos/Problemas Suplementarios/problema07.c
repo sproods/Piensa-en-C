@@ -14,6 +14,8 @@ typedef struct
 } Datos;
 
 void ordena(FILE *);
+void arrayOrdena(int [], int);
+void elimina(int [], int *);
 
 void main(void)
 {
@@ -66,4 +68,65 @@ void ordena(FILE *arc)
     printf("Las matrículas son:\n");
     for (I = 0; I < count_structures; I++)
         printf("%d\n", arr_mat[I]);
+
+    // realizamos el ordenamiento de los valores del arreglo
+    arrayOrdena(arr_mat, count_structures);
+
+    printf("\nLas matrículas ordenadas son:\n");
+    for (I = 0; I < count_structures; I++)
+        printf("%d\n", arr_mat[I]);
+
+    // realizamos la eliminación de los valores repetidos
+    elimina(arr_mat, &count_structures);
+
+    printf("\nLas matrículas actualizadas son:\n");
+    for (I = 0; I < count_structures; I++)
+        printf("%d\n", arr_mat[I]);
+}
+
+void arrayOrdena(int A[MAX], int T)
+{
+    int i, j, index, min, aux;
+
+    for (i = 0; i < T - 1; i++)
+    {
+        min = A[i];
+        index = i;
+        for (j = i + 1; j < T; j++)
+        {
+            if (min > A[j])
+            {
+                min = A[j];
+                index = j;
+            }
+        }
+
+        aux = A[i];
+        A[i] = A[index];
+        A[index] = aux;
+    }
+}
+
+void elimina(int A[MAX], int *T)
+{
+    int i, j, k;
+
+    while (i < (*T - 1))
+    {
+        j = i + 1;
+
+        while (j < *T)
+        {
+            if (A[i] == A[j])
+            {
+                for (k = j; k < (*T - 1); k++)
+                    A[k] = A[k + 1];
+                *T = *T - 1;
+            }
+            else
+                j++;
+        }
+
+        i++;
+    }
 }
