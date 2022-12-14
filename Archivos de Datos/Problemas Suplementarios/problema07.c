@@ -16,6 +16,7 @@ typedef struct
 void ordena(FILE *);
 void arrayOrdena(int [], int);
 void elimina(int [], int *);
+void escribe(FILE *, int []);
 
 void main(void)
 {
@@ -82,21 +83,24 @@ void ordena(FILE *arc)
     printf("\nLas matrículas actualizadas son:\n");
     for (I = 0; I < count_structures; I++)
         printf("%d\n", arr_mat[I]);
+
+    // finalmente, realizamos la escritura de un nuevo archivo con las matrículas ordenadas
+    escribe(arc, arr_mat);
 }
 
 void arrayOrdena(int A[MAX], int T)
 {
-    int i, j, index, min, aux;
+    int i, j, index, may, aux;
 
     for (i = 0; i < T - 1; i++)
     {
-        min = A[i];
+        may = A[i];
         index = i;
         for (j = i + 1; j < T; j++)
         {
-            if (min > A[j])
+            if (may < A[j])
             {
-                min = A[j];
+                may = A[j];
                 index = j;
             }
         }
@@ -109,7 +113,7 @@ void arrayOrdena(int A[MAX], int T)
 
 void elimina(int A[MAX], int *T)
 {
-    int i, j, k;
+    int i = 0, j, k;
 
     while (i < (*T - 1))
     {
