@@ -16,7 +16,7 @@ typedef struct
 void ordena(FILE *);
 void arrayOrdena(int [], int);
 void elimina(int [], int *);
-void escribe(FILE *, int []);
+void escribe(FILE *, int [], int, int);
 
 void main(void)
 {
@@ -33,7 +33,7 @@ void main(void)
 
 void ordena(FILE *arc)
 {
-    int i, tam, may_mat = 0, index = 0, count_structures = 0, arr_mat[MAX], I;
+    int i, tam, may_mat = 0, index = 0, count_structures = 0, conteoInicial, arr_mat[MAX], I;
     Datos datos_alumno;
 
     tam = sizeof(Datos);        // definimos el tamaño de cada bloque de estructura
@@ -52,6 +52,7 @@ void ordena(FILE *arc)
         fseek(arc, i * sizeof(Datos), 0);
         fread(&datos_alumno, sizeof(Datos), 1, arc);
     }
+    conteoInicial = count_structures;
 
     // almacenamos las matrículas en un arreglo unidimensional
     rewind(arc);
@@ -85,7 +86,7 @@ void ordena(FILE *arc)
         printf("%d\n", arr_mat[I]);
 
     // finalmente, realizamos la escritura de un nuevo archivo con las matrículas ordenadas
-    escribe(arc, arr_mat);
+    escribe(arc, arr_mat, conteoInicial, count_structures);
 }
 
 void arrayOrdena(int A[MAX], int T)
@@ -133,4 +134,41 @@ void elimina(int A[MAX], int *T)
 
         i++;
     }
+}
+
+void escribe(FILE *arx, int A[MAX], int T, int tamcut)
+{
+    int i, j, I, tam;
+    FILE *newFile;
+    Datos datitos;
+
+    newFile = fopen("ark7.dat", "w");
+
+    if (newFile != NULL)
+    {
+        tam = sizeof(Datos);
+
+        rewind(arx);
+        fread(&datitos, sizeof(Datos), 1, arx);
+
+        for (i = 0; i < tamcut; i++)
+        {
+            for (j = 0; j < T; j++)
+            {
+                I = ftell(arx) / tam;
+                if (datitos.mat == A[i])
+                {
+                    fwrite(&datitos, sizeof(Datos), 1, newFile);
+                    break;
+                }
+
+                fseek(arx, I * sizeof(Datos), 0);
+                fread(&datitos, sizeof(Datos), 1, arx);
+            }
+
+            rewind(arx);
+        }
+    }
+    else
+        printf("\nEl archivo no ha podido ser abierto.\n");
 }
