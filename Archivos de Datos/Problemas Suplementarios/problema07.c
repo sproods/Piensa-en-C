@@ -67,23 +67,23 @@ void ordena(FILE *arc)
         fread(&datos_alumno, sizeof(Datos), 1, arc);
     }
     
-    printf("Las matrículas son:\n");
-    for (I = 0; I < count_structures; I++)
-        printf("%d\n", arr_mat[I]);
+    //printf("Las matrículas son:\n");
+    //for (I = 0; I < count_structures; I++)
+    //    printf("%d\n", arr_mat[I]);
 
     // realizamos el ordenamiento de los valores del arreglo
     arrayOrdena(arr_mat, count_structures);
 
-    printf("\nLas matrículas ordenadas son:\n");
-    for (I = 0; I < count_structures; I++)
-        printf("%d\n", arr_mat[I]);
+    //printf("\nLas matrículas ordenadas son:\n");
+    //for (I = 0; I < count_structures; I++)
+    //    printf("%d\n", arr_mat[I]);
 
     // realizamos la eliminación de los valores repetidos
     elimina(arr_mat, &count_structures);
 
-    printf("\nLas matrículas actualizadas son:\n");
-    for (I = 0; I < count_structures; I++)
-        printf("%d\n", arr_mat[I]);
+    //printf("\nLas matrículas actualizadas son:\n");
+    //for (I = 0; I < count_structures; I++)
+    //    printf("%d\n", arr_mat[I]);
 
     // finalmente, realizamos la escritura de un nuevo archivo con las matrículas ordenadas
     escribe(arc, arr_mat, conteoInicial, count_structures);
@@ -168,6 +168,8 @@ void escribe(FILE *arx, int A[MAX], int T, int tamcut)
 
             rewind(arx);
         }
+
+        printf("¡Archivo creado exitosamente!\n");
     }
     else
         printf("\nEl archivo no ha podido ser abierto.\n");
