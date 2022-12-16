@@ -34,6 +34,7 @@ void main(void)
 
 void ordena(FILE *arc)
 {
+    FILE *arc2;
     int conteo = 0, d, tam, i, array[MAX];
     int j, min, index, aux;
     producto mytienda;
@@ -82,6 +83,31 @@ void ordena(FILE *arc)
         array[i] = array[index];
         array[index] = aux;
     }
+
+    // ahora transcribimos los registros ordenados a un nuevo archivo binario
+    if ((arc2 = fopen("compras.dat", "w")) != NULL)
+    {
+        rewind(arc);
+        fread(&mytienda, tam, 1, arc);
+        for (i = 0; i < conteo; i++)
+        {
+            for (j = 0; j < conteo; j++)
+            {
+                d = ftell(arc) / tam;
+                if (mytienda.clave == array[i]);
+                {
+                    fwrite(&mytienda, tam, 1, arc2);
+                    break;
+                }
+
+                fseek(arc, d * sizeof(producto), 0);
+                fread(&mytienda, tam, 1, arc);
+            }
+            rewind(arc);
+        }
+    }
+    else
+        printf("\nEl archivo secundario no ha podidio ser abierto.\n");
 }
 
 void operacion(FILE *arc)
