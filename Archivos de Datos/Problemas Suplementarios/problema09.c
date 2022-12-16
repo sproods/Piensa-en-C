@@ -15,6 +15,8 @@ typedef struct
 
 void ordena(FILE *);
 void operacion(FILE *);
+void nuevo_registro(FILE *, int, int []);
+void lee(FILE *);
 
 void main(void)
 {
@@ -34,7 +36,6 @@ void main(void)
 
 void ordena(FILE *arc)
 {
-    FILE *arc2;
     int conteo = 0, d, tam, i, array[MAX];
     int j, min, index, aux;
     producto mytienda;
@@ -85,32 +86,68 @@ void ordena(FILE *arc)
     }
 
     // ahora transcribimos los registros ordenados a un nuevo archivo binario
-    if ((arc2 = fopen("compras.dat", "w")) != NULL)
-    {
-        rewind(arc);
-        fread(&mytienda, tam, 1, arc);
-        for (i = 0; i < conteo; i++)
-        {
-            for (j = 0; j < conteo; j++)
-            {
-                d = ftell(arc) / tam;
-                if (mytienda.clave == array[i]);
-                {
-                    fwrite(&mytienda, tam, 1, arc2);
-                    break;
-                }
-
-                fseek(arc, d * sizeof(producto), 0);
-                fread(&mytienda, tam, 1, arc);
-            }
-            rewind(arc);
-        }
-    }
-    else
-        printf("\nEl archivo secundario no ha podidio ser abierto.\n");
+    nuevo_registro(arc, conteo, array);
 }
 
 void operacion(FILE *arc)
 {
     ;
+}
+
+void nuevo_registro(FILE *arc, int T, int A[])
+{
+    FILE *arxiv;
+    int i, j, d, tam;
+    producto mytienda;
+
+    if ((arxiv = fopen("compras.dat", "w")) != NULL)
+    {
+        tam = sizeof(producto);
+
+        rewind(arc);
+        fread(&mytienda, tam, 1, arc);
+
+        for (i = 0; i < T; i++)
+        {
+            for (j = 0; j < T; j++)
+            {
+                d = ftell(arc) / tam;
+                if (mytienda.clave == A[i])
+                {
+                    fwrite(&mytienda, sizeof(producto), 1, arxiv);
+                    break;
+                }
+
+                fseek(arc, d * sizeof(producto), 0);
+                fread(&mytienda, sizeof(producto), 1, arc);
+            }
+            rewind(arc);
+        }
+
+        lee(arxiv);
+    }
+    else
+        printf("\nEl nuevo archivo no ha podido ser creado.\n");
+}
+
+void lee(FILE *arc)
+{
+    int i = 0;
+    producto mitienda;
+
+    rewind(arc);
+    fread(&mitienda, sizeof(producto), 1, arc);
+    while (!feof(arc))
+    {
+        i++;
+        printf("\n\tResistro %d", i);
+        printf("\nClave: \t%d", mitienda.clave);
+        printf("\nNombre: \t%s", mitienda.nombre);
+        printf("\nCantidad: \t%d", mitienda.cantidad);
+        printf("\nPrecio: \t%.2f\n", mitienda.precio);
+
+        fread(&mitienda, sizeof(producto), 1, arc);
+    }
+
+    printf("\nEstos son todos los registros.\n");
 }
