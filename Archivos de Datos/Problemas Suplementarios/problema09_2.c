@@ -16,7 +16,7 @@ void main(void)
 {
     FILE *arxiv;
 
-    if ((arxiv = fopen("com.dat", "r")) != NULL)
+    if ((arxiv = fopen("compras.dat", "r")) != NULL)
     {
         read(arxiv);
         fclose(arxiv);
