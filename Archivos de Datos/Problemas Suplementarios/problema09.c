@@ -16,7 +16,7 @@ typedef struct
 void ordena(FILE *);
 void operacion(FILE *);
 void nuevo_registro(FILE *, int, int []);
-void lee(FILE *);
+void lee(void);
 
 void main(void)
 {
@@ -124,30 +124,39 @@ void nuevo_registro(FILE *arc, int T, int A[])
             rewind(arc);
         }
 
-        lee(arxiv);
+        fclose(arxiv);
+
+        lee();
     }
     else
         printf("\nEl nuevo archivo no ha podido ser creado.\n");
 }
 
-void lee(FILE *arc)
+void lee(void)
 {
+    FILE *archivo;
     int i = 0;
     producto mitienda;
 
-    rewind(arc);
-    fread(&mitienda, sizeof(producto), 1, arc);
-    while (!feof(arc))
+    if ((archivo = fopen("compras.dat", "r")) != NULL)
     {
-        i++;
-        printf("\n\tResistro %d", i);
-        printf("\nClave: \t%d", mitienda.clave);
-        printf("\nNombre: \t%s", mitienda.nombre);
-        printf("\nCantidad: \t%d", mitienda.cantidad);
-        printf("\nPrecio: \t%.2f\n", mitienda.precio);
+        fread(&mitienda, sizeof(producto), 1, archivo);
+        while (!feof(archivo))
+        {
+            i++;
+            printf("\n\tResistro %d", i);
+            printf("\nClave: \t%d", mitienda.clave);
+            printf("\nNombre: \t%s", mitienda.nombre);
+            printf("\nCantidad: \t%d", mitienda.cantidad);
+            printf("\nPrecio: \t%.2f\n", mitienda.precio);
 
-        fread(&mitienda, sizeof(producto), 1, arc);
+            fread(&mitienda, sizeof(producto), 1, archivo);
+        }
+
+        printf("\nEstos son todos los registros.\n");
     }
+    else
+        printf("\nEl archivo no ha podido ser abierto.\n");
 
-    printf("\nEstos son todos los registros.\n");
+    fclose(archivo);
 }
