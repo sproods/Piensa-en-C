@@ -17,6 +17,8 @@ void ordena(FILE *);
 void operacion(FILE *);
 void nuevo_registro(FILE *, int, int []);
 void lee(void);
+void ventasProductos(void);
+void nuevosProductos(void);
 
 void main(void)
 {
@@ -27,7 +29,7 @@ void main(void)
     if (arxiv != NULL)
     {
         ordena(arxiv);
-        //operacion(arxiv);
+        operacion(arxiv);
         fclose(arxiv);
     }
     else
@@ -91,7 +93,57 @@ void ordena(FILE *arc)
 
 void operacion(FILE *arc)
 {
-    ;
+    int op;
+    char op2;
+
+    printf("\n¡Bienvenido a la aplicación del registro de su tienda!\n\nDigite, a continuación, la opción que desea llevar a cabo:\n");
+
+    do
+    {
+        printf("\t1. Venta\t2. Reabastecimientos\t3. Ver la lista de productos\n");
+        scanf("%d", &op);
+        fflush(stdin);
+    }
+    while (op < 1 || op > 3);
+
+    while (op)
+    {
+        switch (op)
+        {
+            case 1: ventasProductos();
+                break;
+            case 2: nuevosProductos();
+                break;
+            case 3: lee();
+                break;
+        }
+
+        do
+        {
+            printf("\n¿Desea realizar otra operación? (s/n): ");
+            op2 = getchar();
+            fflush(stdin);
+            printf("op2 = %c", op2);
+        }
+        while (op2 != 's' && op2 != 'n');
+
+        if (op2 == 's')
+        {
+            printf("\nDigite, a continuación, la opción que desea llevar a cabo:\n");
+            do
+            {
+                printf("\t1. Venta\t2. Reabastecimientos\t3. Ver la lista de productos\n");
+                scanf("%d", &op);
+                fflush(stdin);
+            }
+            while (op < 1 || op > 3);
+        }
+        else
+        {
+            printf("\n\n¡Gracias!\n");
+            break;
+        }
+    }
 }
 
 void nuevo_registro(FILE *arc, int T, int A[])
@@ -125,8 +177,6 @@ void nuevo_registro(FILE *arc, int T, int A[])
         }
 
         fclose(arxiv);
-
-        lee();
     }
     else
         printf("\nEl nuevo archivo no ha podido ser creado.\n");
@@ -159,4 +209,14 @@ void lee(void)
         printf("\nEl archivo no ha podido ser abierto.\n");
 
     fclose(archivo);
+}
+
+void ventasProductos()
+{
+    ;
+}
+
+void nuevosProductos()
+{
+    ;
 }
