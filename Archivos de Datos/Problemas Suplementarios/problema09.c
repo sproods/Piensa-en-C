@@ -2,6 +2,9 @@
  * cuyos registros se escriben en una archivo binario. */
 
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdbool.h>
 
 #define MAX 200
 
@@ -123,7 +126,6 @@ void operacion(FILE *arc)
             printf("\n¿Desea realizar otra operación? (s/n): ");
             op2 = getchar();
             fflush(stdin);
-            printf("op2 = %c", op2);
         }
         while (op2 != 's' && op2 != 'n');
 
@@ -140,7 +142,7 @@ void operacion(FILE *arc)
         }
         else
         {
-            printf("\n\n¡Gracias!\n");
+            printf("\n¡Gracias!\n");
             break;
         }
     }
@@ -213,7 +215,71 @@ void lee(void)
 
 void ventasProductos()
 {
-    ;
+    int tam, d, nItems;
+    float totalPagar = 0;
+    char item[30], op;
+    FILE *archivo;
+    producto mitienda;
+
+    while (true)
+    {
+        printf("\nDigite, por favor, el nombre del producto que desea vender: ");
+        gets(item);
+        fflush(stdin);
+
+        item[0] = toupper(item[0]);
+
+        // recorremos por todo el contenido del archivo en busca del registro que contenga el nombre buscado
+        archivo = fopen("compras.dat", "r+");
+        if (archivo != NULL)
+        {
+            tam = sizeof(producto);
+            fseek(archivo, 0, 0);
+            fread(&mitienda, sizeof(producto), 1, archivo);
+
+            while (!feof(archivo))
+            {
+                d = ftell(archivo) / tam;
+                if (strcmp(mitienda.nombre, item) == 0)
+                {
+                    printf("\nNúmero de elementos %s que va a vender: ", item);
+                    scanf("%d", &nItems);
+                    fflush(stdin);
+
+                    if (nItems < mitienda.cantidad)
+                    {
+                        mitienda.cantidad -= nItems;
+                        totalPagar += nItems * mitienda.precio;
+                        printf("El total a pagar será de %.2f", totalPagar);
+
+                        fseek(archivo, (d - 1) * tam, 0);
+                        fwrite(&mitienda, tam, 1, archivo);
+                        fclose(archivo);
+                        break;
+                    }
+                }
+
+                fseek(archivo, d * tam, 0);
+                fread(&mitienda, tam, 1, archivo);
+            }
+            fclose(archivo);
+        }
+        else
+            printf("\nEl archivo de la tienda no se ha podido abrir.\n");
+
+        do
+        {
+            printf("\n¿Va a realizar otra venta? (s/n)");
+            op = getchar();
+            fflush(stdin);
+        }
+        while (op != 's' && op != 'n');
+
+        if (op == 's')
+            continue;
+        else if(op == 'n')
+            break;
+    }
 }
 
 void nuevosProductos()
