@@ -250,7 +250,7 @@ void ventasProductos()
                     {
                         mitienda.cantidad -= nItems;
                         totalPagar += nItems * mitienda.precio;
-                        printf("El total a pagar será de %.2f", totalPagar);
+                        printf("\nEl total a pagar será de %.2f\n", totalPagar);
 
                         fseek(archivo, (d - 1) * tam, 0);
                         fwrite(&mitienda, tam, 1, archivo);
@@ -269,7 +269,7 @@ void ventasProductos()
 
         do
         {
-            printf("\n¿Va a realizar otra venta? (s/n)");
+            printf("\n¿Va a realizar otra venta? (s/n): ");
             op = getchar();
             fflush(stdin);
         }
