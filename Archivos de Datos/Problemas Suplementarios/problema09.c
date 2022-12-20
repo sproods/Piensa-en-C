@@ -252,7 +252,7 @@ void ventasProductos()
                     scanf("%d", &nItems);
                     fflush(stdin);
 
-                    if (nItems < mitienda.cantidad)
+                    if (nItems <=  mitienda.cantidad)
                     {
                         mitienda.cantidad -= nItems;
                         totalPagar += nItems * mitienda.precio;
@@ -261,6 +261,28 @@ void ventasProductos()
                         fwrite(&mitienda, tam, 1, archivo);
                         fclose(archivo);
                         break;
+                    }
+                    else
+                    {
+                        do
+                        {
+                            printf("\nNo hay suficientes elementos de %s, solo quedan %d. ¿Desea venderlos todos? (s/n): ", mitienda.nombre, mitienda.cantidad);
+                            op = getchar();
+                            fflush(stdin);
+                        }
+                        while (op != 's' && op != 'n');
+                        if (op == 's')
+                        {
+                            mitienda.cantidad = 0;
+                            totalPagar += mitienda.cantidad * mitienda.precio;
+
+                            fseek(archivo, (d - 1) * tam, 0);
+                            fwrite(&mitienda, tam, 1, archivo);
+                            fclose(archivo);
+                            break;
+                        }
+                        else if (op == 'n')
+                            break;
                     }
                 }
 
