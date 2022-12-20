@@ -26,12 +26,18 @@ void nuevosProductos(void);
 void main(void)
 {
     FILE *arxiv;
+    char res;
 
     arxiv = fopen("com.dat", "r+");
 
     if (arxiv != NULL)
     {
-        ordena(arxiv);
+        printf("\n¿Desea resetear el registro? (s/n): ");
+        res = getchar();
+        fflush(stdin);
+        if (res == 's')
+            ordena(arxiv);
+
         operacion(arxiv);
         fclose(arxiv);
     }
@@ -250,7 +256,6 @@ void ventasProductos()
                     {
                         mitienda.cantidad -= nItems;
                         totalPagar += nItems * mitienda.precio;
-                        printf("\nEl total a pagar será de %.2f\n", totalPagar);
 
                         fseek(archivo, (d - 1) * tam, 0);
                         fwrite(&mitienda, tam, 1, archivo);
@@ -278,7 +283,10 @@ void ventasProductos()
         if (op == 's')
             continue;
         else if(op == 'n')
+        {
+            printf("\nEl total a pagar será de %.2f\n", totalPagar);
             break;
+        }
     }
 }
 
