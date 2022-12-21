@@ -314,5 +314,62 @@ void ventasProductos()
 
 void nuevosProductos()
 {
-    ;
+    producto mitienda;
+    FILE *archivo;
+    int cantidad, tam, d;
+    char nombre[30], op;
+
+    archivo = fopen("compras.dat", "r+");
+    if (archivo != NULL)
+    {
+        while (true)
+        {
+            printf("\nDigite el nombre del producto que desea reabastecer: ");
+            gets(nombre);
+            fflush(stdin);
+
+            nombre[0] = toupper(nombre[0]);
+
+            tam = sizeof(producto);
+            fseek(archivo, 0, 0);
+            fread(&mitienda, tam, 1, archivo);
+            while (!feof(archivo))
+            {
+                d = ftell(archivo) / tam;
+                if (strcmp(nombre, mitienda.nombre) == 0)
+                {
+                    printf("\nDigite el número de productos que va a añadir a %s: ", mitienda.nombre);
+                    scanf("%d", &cantidad);
+                    fflush(stdin);
+
+                    mitienda.cantidad += cantidad;
+
+                    fseek(archivo, (d - 1) * tam, 0);
+                    fwrite(&mitienda, tam, 1, archivo);
+                    fclose(archivo);
+                    printf("\nRegistro actualizado!\n");
+                    break;
+                }
+
+                fseek(archivo, d * tam, 0);
+                fread(&mitienda, tam, 1, archivo);
+            }
+            fclose(archivo);
+
+            do
+            {
+                printf("\n¿Desea realizar otro reabastecimiento? (s/n): ");
+                op = getchar();
+                fflush(stdin);
+            }
+            while (op != 's' && op != 'n');
+
+            if (op == 's')
+                continue;
+            else if (op == 'n')
+                break;
+        }
+    }
+    else
+        printf("\nEl archivo de registro de productos no ha podido ser abierto.\n");
 }
