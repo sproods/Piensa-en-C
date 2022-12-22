@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
 typedef struct
 {
@@ -18,7 +19,7 @@ typedef struct
     int clave;                  // clave del paciente
     char nombre[30];            // nombre y apellido del paciente
     int edad;                   // edad del paciente
-    char sexo[10];              // sexo del paciente
+    char sexo[30];              // sexo del paciente
     int condicion;              // condición
     domicilio domi;             // domicilio
 } datos;
@@ -42,7 +43,7 @@ void main(void)
 
 void escribe(FILE *arc)
 {
-    int i;
+    int sex;
     char op;
     datos paciente;
 
@@ -55,14 +56,8 @@ void escribe(FILE *arc)
     }
     while (op != 's' && op != 'n');
 
-    while (true)
+    while (op == 's')
     {
-        if (op == 'n');
-        {
-            printf("\nGracias...\n");
-            break;
-        }
-
         printf("\nDigite la clave del paciente: ");
         scanf("%d", &paciente.clave);
         fflush(stdin);
@@ -75,9 +70,22 @@ void escribe(FILE *arc)
         scanf("%d", &paciente.edad);
         fflush(stdin);
 
-        printf("\nDigite el sexo del paciente: ");
-        gets(paciente.sexo);
-        fflush(stdin);
+        do
+        {
+            printf("\nDigite el sexo del paciente: (1. femenino   2. marculino   3. prefiere no contestar): ");
+            scanf("%d", &sex);
+            fflush(stdin);
+        }
+        while (sex < 1 || sex > 3);
+        switch (sex)
+        {
+            case 1: strcpy(paciente.sexo, "femenino");
+                break;
+            case 2: strcpy(paciente.sexo, "Masculino");
+                break;
+            case 3: strcpy(paciente.sexo, "Prefiere no especificar");
+                break;
+        }
 
         do
         {
