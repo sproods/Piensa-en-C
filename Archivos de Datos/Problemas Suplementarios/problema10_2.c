@@ -34,8 +34,11 @@ void main(void)
 
     if (arxiv != NULL)
     {
+        printf("\nEl archivo está por leerse...");
         lee(arxiv);
+        printf("\nEl archivo se ha leído...");
         fclose(arxiv);
+        printf("\nEl archivo ya se ha cerrado...");
     }
     else
         printf("\nEl archivo no ha podido ser abierto.\n");
@@ -46,10 +49,12 @@ void lee(FILE *arc)
     int i = 0;
     datos paciente;
 
+    printf("\nHemos ingresado a la función lee...");
     fread(&paciente, sizeof(datos), 1, arc);
 
     while (!feof(arc))
     {
+        printf("\nSe supone que estamos en la estructura repetitiva while...");
         i++;
         printf("\nDatos del paciente %d:\n", i);
         printf("\nClave: \t%d", paciente.clave);
@@ -65,6 +70,8 @@ void lee(FILE *arc)
         printf("\n\tCiudad: %s", paciente.domi.ciudad);
         printf("\n\tTeléfono: %s", paciente.domi.tele);
 
+        printf("\nSe supone que hemos escrito en el archivo los datos necesarios...");
         fread(&paciente, sizeof(datos), 1, arc);
     }
+    printf("\nEstamos a punto de salir de la función lee...");
 }
