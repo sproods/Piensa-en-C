@@ -6,7 +6,7 @@
 
 typedef struct
 {
-    char calle[50];
+    char calle[20];
     int numero;
     char colonia[50];
     char codigo[10];
@@ -61,14 +61,14 @@ void lee(FILE *arc)
         printf("\nNombre: \t%s", paciente.nombre);
         printf("\nEdad: \t%d", paciente.edad);
         printf("\nSexo: \t%s", paciente.sexo);
-        printf("\ncondición: \t%d", paciente.condicion);
+        printf("\nCondición: \t%d", paciente.condicion);
         printf("\nDomicilio:");
         printf("\n\tCalle: %s", paciente.domi.calle);
         printf("\n\tNúmero: %d", paciente.domi.numero);
         printf("\n\tColonia: %s", paciente.domi.colonia);
         printf("\n\tCódigo: %s", paciente.domi.codigo);
         printf("\n\tCiudad: %s", paciente.domi.ciudad);
-        printf("\n\tTeléfono: %s", paciente.domi.tele);
+        printf("\n\tTeléfono: %s\n", paciente.domi.tele);
 
         printf("\nSe supone que hemos escrito en el archivo los datos necesarios...");
         fread(&paciente, sizeof(datos), 1, arc);
