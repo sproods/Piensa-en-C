@@ -6,7 +6,7 @@
 
 typedef struct
 {
-    char calle[50];             // calle
+    char calle[20];             // calle
     int numero;                 // número
     char colonia[50];           // colonia
     char codigo[10];            // código postal
@@ -79,11 +79,11 @@ void escribe(FILE *arc)
         while (sex < 1 || sex > 3);
         switch (sex)
         {
-            case 1: strcpy(paciente.sexo, "femenino");
+            case 1: strcpy(paciente.sexo, "Femenino");
                 break;
             case 2: strcpy(paciente.sexo, "Masculino");
                 break;
-            case 3: strcpy(paciente.sexo, "Prefiere no especificar");
+            case 3: strcpy(paciente.sexo, "Sin especificar");
                 break;
         }
 
