@@ -95,6 +95,8 @@ void escribe(FILE *arc)
         }
         while (paciente.condicion < 1 || paciente.condicion > 5);
 
+        fwrite(&paciente, sizeof(datos), 1, arc);
+
         printf("\nDatos del domicilio del paciente");
         printf("\n\tCalle: ");
         gets(paciente.domi.calle);
@@ -120,7 +122,7 @@ void escribe(FILE *arc)
         gets(paciente.domi.tele);
         fflush(stdin);
 
-        fwrite(&paciente, sizeof(datos), 1, arc);
+        fwrite(&paciente.domi, sizeof(domicilio), 1, arc);
 
         do
         {
