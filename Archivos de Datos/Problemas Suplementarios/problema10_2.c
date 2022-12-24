@@ -51,6 +51,7 @@ void lee(FILE *arc)
 
     printf("\nHemos ingresado a la función lee...");
     fread(&paciente, sizeof(datos), 1, arc);
+    fread(&paciente.domi, sizeof(domicilio), 1, arc);
 
     while (!feof(arc))
     {
@@ -72,6 +73,7 @@ void lee(FILE *arc)
 
         printf("\nSe supone que hemos escrito en el archivo los datos necesarios...");
         fread(&paciente, sizeof(datos), 1, arc);
+        fread(&paciente.domi, sizeof(domicilio), 1, arc);
     }
     printf("\nEstamos a punto de salir de la función lee...");
 }
