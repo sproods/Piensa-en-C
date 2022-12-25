@@ -25,6 +25,7 @@ typedef struct
 
 void porcentaje(FILE *);
 void condicion_pacientes(FILE *);
+void edades(FILE *);
 
 void main(void)
 {
@@ -36,6 +37,7 @@ void main(void)
     {
         porcentaje(arxiv);
         condicion_pacientes(arxiv);
+        edades(arxiv);
         fclose(arxiv);
     }
     else
@@ -98,4 +100,32 @@ void condicion_pacientes(FILE *arc)
     printf("\nNúmero de pacientes por la condición de su salud:\n");
     for (i = 0; i < 5; i++)
         printf("Condición %d: %d pacientes\n", i + 1, condicio_N[i]);
+}
+
+void edades(FILE *arc)
+{
+    datos paciente;
+    int edad[11] = {0}, tam , d, i;
+
+    tam = sizeof(datos);
+
+    fseek(arc, 0, 0);
+    fread(&paciente, sizeof(datos), 1, arc);
+
+    while (!feof(arc))
+    {
+        d = ftell(arc) / tam;
+
+        edad[paciente.edad / 10]++;
+
+        fseek(arc, d * sizeof(datos), 0);
+        fread(&paciente.domi, sizeof(domicilio), 1, arc);
+        fread(&paciente, sizeof(datos), 1, arc);
+    }
+
+    printf("\nNúmero de pacientes por rango de edades:\n");
+    for (i = 0; i < 11; i++)
+        printf("\t<%d - %d>: \t%d pacientes\n", i * 10, ((i + 1) * 10) - 1, edad[i]);
+
+    printf("\nEstudio de datos finalizada...\n");
 }
