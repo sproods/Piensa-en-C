@@ -46,8 +46,9 @@ void porcentaje(FILE *arc)
     int n_hombres = 0, n_mujeres = 0, total_pacientes = 0, d, tam;
     float prom_mujeres, prom_hombres;
 
-    tam = sizeof(paciente);
+    tam = sizeof(datos);
     fseek(arc, 0, 0);
+    // fread(&paciente.domi, sizeof(domicilio), 1, arc);
     fread(&paciente, tam, 1, arc);
 
     while (!feof(arc))
@@ -61,13 +62,14 @@ void porcentaje(FILE *arc)
             n_hombres++;
 
         fseek(arc, d * sizeof(datos), 0);
+        fread(&paciente.domi, sizeof(domicilio), 1, arc);
         fread(&paciente, tam, 1, arc);
     }
 
-    prom_mujeres = n_mujeres / total_pacientes;
-    prom_hombres = n_hombres / total_pacientes;
+    prom_mujeres = (float)n_mujeres / total_pacientes;
+    prom_hombres = (float)n_hombres / total_pacientes;
 
     printf("\nhombres: %d\tmujeres: %d\ttotal: %d\n", n_hombres, n_mujeres, total_pacientes);
-    printf("\nEl promedio de mujeres que hay en el hospital es de %.2f \%\n", prom_mujeres);
-    printf("\nEl promedio de hombres que hay en el hospital es de %.2f \%\n", prom_hombres);
+    printf("\nEl promedio de mujeres que hay en el hospital es del %.2f \%\n", prom_mujeres * 100);
+    printf("\nEl promedio de hombres que hay en el hospital es del %.2f \%\n", prom_hombres * 100);
 }
