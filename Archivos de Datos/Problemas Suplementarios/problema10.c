@@ -24,6 +24,7 @@ typedef struct
 } datos;
 
 void porcentaje(FILE *);
+void condicion_pacientes(FILE *);
 
 void main(void)
 {
@@ -34,6 +35,7 @@ void main(void)
     if (arxiv != NULL)
     {
         porcentaje(arxiv);
+        condicion_pacientes(arxiv);
         fclose(arxiv);
     }
     else
@@ -70,6 +72,30 @@ void porcentaje(FILE *arc)
     prom_hombres = (float)n_hombres / total_pacientes;
 
     printf("\nhombres: %d\tmujeres: %d\ttotal: %d\n", n_hombres, n_mujeres, total_pacientes);
-    printf("\nEl promedio de mujeres que hay en el hospital es del %.2f \%\n", prom_mujeres * 100);
+    printf("\nEl promedio de mujeres que hay en el hospital es del %.2f \%\a", prom_mujeres * 100);
     printf("\nEl promedio de hombres que hay en el hospital es del %.2f \%\n", prom_hombres * 100);
+}
+
+void condicion_pacientes(FILE *arc)
+{
+    datos pacientes;
+    int i, condicio_N[5] = {0}, tam, d;
+
+    tam = sizeof(datos);
+    fseek(arc, 0, 0);
+    fread(&pacientes, tam, 1, arc);
+
+    while (!feof(arc))
+    {
+        d = ftell(arc) / tam;
+        condicio_N[pacientes.condicion - 1]++;
+
+        fseek(arc, d * sizeof(datos), 0);
+        fread(&pacientes.domi, sizeof(domicilio), 1, arc);
+        fread(&pacientes, sizeof(datos), 1, arc);
+    }
+
+    printf("\nNúmero de pacientes por la condición de su salud:\n");
+    for (i = 0; i < 5; i++)
+        printf("Condición %d: %d pacientes\n", i + 1, condicio_N[i]);
 }
